@@ -5,6 +5,9 @@ import merlotSuit from './assets/merlot-suit.jpg';
 import moonlightDress from './assets/moonlight-dress.jpg';
 import denimPioneer from './assets/denim-pioneer.jpg';
 
+// Archivo de js donde estan todo el objeto de los productos
+// contiene el id, la imagen. el titulo, el precio y la descripcion de cada uno
+
 export const DUMMY_PRODUCTS = [
   {
     id: 'p1',

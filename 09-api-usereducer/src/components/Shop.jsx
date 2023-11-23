@@ -1,4 +1,5 @@
 
+// La tienda, le mandamos el children
 export default function Shop( { children } ) {
 
   return (
@@ -8,6 +9,8 @@ export default function Shop( { children } ) {
       <h2>Elegant Clothing For Everyone</h2>
 
       <ul id="products">
+
+        { /* Mandamos el children para que se muestren los productos */ }
 
         {children}
       

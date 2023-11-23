@@ -30,6 +30,7 @@ export const StylesButton = styled.button`
   
   & .text-button:hover {
     color: #164620;
+    ;;;;
   }
 `
 

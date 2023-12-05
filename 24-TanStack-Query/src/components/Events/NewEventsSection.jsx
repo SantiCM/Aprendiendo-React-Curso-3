@@ -11,10 +11,10 @@ export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
 
     // cada peticion tiene que tener una key, almacenar en cache y pueda ser reutilizada
-    queryKey: ["events"],
+    queryKey: ["events", {max: 3}],
     
     // se define el codigo de la peticion
-    queryFn: fetchEvents,
+    queryFn: ({signal, queryKey}) => fetchEvents({signal, ...queryKey[1]}),
     
     // controla el tiempo dee una peticion de datos encontrados, (no se envian peticiones incesarias)
     staleTime: 5000,

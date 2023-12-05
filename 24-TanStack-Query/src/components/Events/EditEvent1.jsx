@@ -1,19 +1,21 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-
 import Modal from '../UI/Modal.jsx';
 import EventForm from './EventForm.jsx';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchEvent, queryClient, updateEvent } from '../../util/http.js';
-import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
+import { redirect, useNavigate, useNavigation, useParams, useSubmit } from 'react-router-dom';
 
-export default function EditEvent() {
+export default function EditEvent1() {
   
   const navigate = useNavigate();
 
+  const submit = useSubmit()
+
+  const {state} = useNavigation()
+
   const params = useParams()
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data,isError, error } = useQuery({
   
     queryKey: ["events", params.id],
 
@@ -64,10 +66,8 @@ export default function EditEvent() {
 
   function handleSubmit(formData) {
     
-    mutate( { id: params.id, event: formData} )
+    submit(formData, { method: "PUT∂" })
 
-    navigate('../');
-    
   }
 
   function handleClose() {
@@ -77,16 +77,6 @@ export default function EditEvent() {
   }
 
   let content
-
-  if(isPending) {
-    
-    content = ( <div className='center'>
-
-      <LoadingIndicator></LoadingIndicator>
-
-    </div>
-  
-  )}
 
   if(isError) {
   
@@ -113,18 +103,26 @@ export default function EditEvent() {
     content = ( <>
     
     <EventForm inputData={data} onSubmit={handleSubmit}>
-        
-      <Link to="../" className="button-text">
+
+      {state === "submitting" ? <p>Seeding data...</p> : (
+
+        <>  
+
+          <Link to="../" className="button-text">
           
-        Cancel
+            Cancel
         
-      </Link>
+          </Link>
         
-      <button type="submit" className="button">
+          <button type="submit" className="button">
           
-        Update
+            Update
         
-      </button>
+          </button>
+        
+        </>
+    
+      )}
       
     </EventForm>
     
@@ -141,5 +139,32 @@ export default function EditEvent() {
     </Modal>
   
   );
+
+}
+
+export const Loader = ( { params } ) => {
+
+    // desencadenar una consulta mediante programacion
+    return queryClient.fetchQuery({
+  
+      queryKey: ["events", params.id],
+  
+      queryFn: (signal) => fetchEvent({signal, id: params.id})
+    
+    })
+  
+}
+
+export const Action = async( { request, params } ) => {
+
+    const formData = await request.formData()
+
+    const updatedEventData = Object.fromEntries(formData)
+
+    await updateEvent( { id: params.id, event: updatedEventData } )
+
+    await queryClient.invalidateQueries(["events"])
+
+    return redirect("../")
 
 }

@@ -15,7 +15,7 @@ export default function FindEventSection() {
   
     queryKey: ["events", {search: searchTerm}],
 
-    queryFn: ({signal}) => fetchEvents({signal, searchTerm}),
+    queryFn: ({signal,queryKey}) => fetchEvents({signal, searchTerm, ...queryKey[1]}),
 
     // si es false el query se desactiva
     enabled: searchTerm !== undefined,

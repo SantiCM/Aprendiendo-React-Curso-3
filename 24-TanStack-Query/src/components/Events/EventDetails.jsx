@@ -101,7 +101,7 @@ export default function EventDetails() {
 
         <header>
           
-          <h1></h1>
+          <h1>{data.title}</h1>
           
           <nav>
             

@@ -1,16 +1,21 @@
 import { Link, useSubmit } from 'react-router-dom';
 
-
+// item del evento
 function EventItem({ event }) {
 
+  // damos el submit que es como un form que da enviar el formulario 
   const submit = useSubmit()
   
+  // eliminar todo
   function startDeleteHandler() {
-    
+
+    // damos el window de si se confirma el eliminar
     const proceed = window.confirm("Are you sure?")
 
+    // si es aso
     if(proceed) {
-      
+
+      // damos el submit en nulo y el damos el metodo de eliminar
       submit(null, {
       
         method: "delete",

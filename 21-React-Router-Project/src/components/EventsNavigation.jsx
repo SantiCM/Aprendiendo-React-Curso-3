@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
 
+// Es exactamente igual que la navegacion inicial utilizando el navlink
+// dandole su url 
+
 function EventsNavigation() {
   
   return (

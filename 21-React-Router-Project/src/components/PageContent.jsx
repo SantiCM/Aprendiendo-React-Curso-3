@@ -1,4 +1,5 @@
 
+// content de la pagina damos el titulo y todos los hijos
 function PageContent({ title, children }) {
   
     return (

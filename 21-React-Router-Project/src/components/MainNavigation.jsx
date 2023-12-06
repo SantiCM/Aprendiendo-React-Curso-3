@@ -2,6 +2,10 @@ import { NavLink } from 'react-router-dom';
 
 import NewsletterSignup from './NewsletterSignup';
 
+// Clasico mainNavigation
+// Nadamos utilizamos el NavLink del dom el cual 
+// Hace un link en forma de navegacion
+
 function MainNavigation() {
   
   return (

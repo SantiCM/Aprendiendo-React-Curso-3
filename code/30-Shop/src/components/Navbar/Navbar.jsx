@@ -11,20 +11,19 @@ export const Navbar = () => {
 
     const [menu, setMenu] = useState("shop")
 
-    const {totalItem} = useContext(ShopContext)
+    const {totalItems} = useContext(ShopContext)
 
     const {displayName, status}  = useSelector(state => state.auth) 
 
+    // dispatch
+    const dispatch =  useDispatch()
 
-      // dispatch
-      const dispatch =  useDispatch()
-
-      // Esto es para hacer que nos salgamos al logout osea salir
-        const onLogout = () => {
+    // Esto es para hacer que nos salgamos al logout osea salir
+    const onLogout = () => {
           
-          dispatch(startLogout())
+        dispatch(startLogout())
        
-        } 
+    } 
   
     return (
   
@@ -56,13 +55,13 @@ export const Navbar = () => {
 
                 <div className="nav-cart-count">
 
-                    {totalItem}
+                    {totalItems}
 
                 </div>
 
                 {displayName ? <p style={{fontSize: 20}}>{displayName}</p> : <Link  to="/login"><button>Login</button></Link>}
 
-                {(status === "cheking") ? <button onClick={onLogout} style={{background: "white", color: "black",width: 100, borderRadius: 50, border: "none"}}>Logout</button> : undefined}
+                {(status === "authenticed") ? <button onClick={onLogout} style={{background: "white", color: "black",width: 100, borderRadius: 50, border: "none"}}>Logout</button> : undefined}
 
             </div>
 

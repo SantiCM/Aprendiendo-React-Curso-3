@@ -5,7 +5,7 @@ import "./CartItem.css"
 
 export const CartItem = () => {
 
-    const {all_product, cartItems, remove, totalAmount} = useContext(ShopContext)
+    const {all_product, cartItems, remove, getTotal} = useContext(ShopContext)
     
     return (
         
@@ -78,7 +78,7 @@ export const CartItem = () => {
 
                     <p>SubTotal</p>
 
-                    <p>${totalAmount()}</p>
+                    <p>${getTotal()}</p>
 
                 </div>
 
@@ -98,7 +98,7 @@ export const CartItem = () => {
 
                 <h3>Total</h3>
 
-                <h3>${totalAmount()}</h3>
+                <h3>${getTotal()}</h3>
 
             </div>
 

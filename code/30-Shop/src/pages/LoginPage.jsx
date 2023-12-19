@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Link as RouterLink } from "react-router-dom";
 import { Google } from "@mui/icons-material";
-import { AuthLayout } from "./ui/Auth";
 import { useForm } from "../hooks/useForm";
 import { useMemo } from "react";
-import { Alert, Button, Grid, TextField, Typography } from "@mui/material";
 import { chekingGoogle, startLoginWithEmailPassword } from "../store/auth/thunks";
+import "./css/Form.css"
 
 //Esta variable es para que no haya problema con la renderizacion
 const formData =  {
+
     email: "",
 
     password: ""
@@ -56,111 +56,76 @@ export const LoginPage = () => {
 
   return (
 
-    <AuthLayout title="Login">
+    <div className="login">
 
-        {/* En el form recibimos las animaciones y la propiedad onSubmit que recibe el onsunmit*/}
-        <form aria-label="submitForm" className="animate__animated animate__fadeIn animate__faster" onSubmit={onSubmit}>
-       
-            <Grid container>
-       
-                <Grid item xs={12} sx={{ mt: 2 }} md={12} xl={12}>
+        <form aria-label="submitForm" onSubmit={onSubmit}>
 
-                    {/*Aqui recibimos el email como name y value y el onChange que viene del formData*/}
-                    <TextField
+            <div className="container-form">
+
+                <h1>Sing Up</h1>
+       
+                <div className="form-box">
+
+                    <input className="inputs"
                         label="Correo"
                         type="email"
                         placeholder="correodegoogle@gmail.com"
-                        fullWidth
                         name="email"
                         value={email}
                         onChange={onInputChanhge}
                     >
 
-                    </TextField>
+                    </input>
 
-                </Grid>
-
-                <Grid item xs={12} sx={{ mt: 2 }} md={12} xl={12}>
-
-                    {/*Aqui recibimos el password como name y value y el onChange que viene del formData*/}
-                    <TextField
+                    <input className="inputs"
                         label="Contraseña"
                         type="password"
                         placeholder="Ingresa tu contraseña"
-                        fullWidth
                         name="password"
-                        inputProps={{
-                        
-                            "data-testid" : "password"
-                        
-                        }}
                         value={password}
                         onChange={onInputChanhge}
                     >   
                 
-                    </TextField>
-            
-                </Grid>
+                    </input>
 
-                <Grid container spacing={2} sx={{ mb: 2, mt: 2 }}>
+                </div>
+
+                <div className="form-box-2-alert" style={{display: !!errorMessage ? <p>{errorMessage}</p> : "none"}}></div>
+
+                <div className="form-box-3-button">
+
+                    <button className="form-button-login" type="submit">
                     
-                    {/*Aqui le decimos que si el display es que el erroMesagge que viene de el auth si es asi no recibe nada y si no es nulo*/}
-                    <Grid item xs={12} sm={12} display={ !!errorMessage ? "" : "none" }>
-
-                        {/*este alert es decir que las crendeciales estan fallando de firebase, (que ya existe ese email, etc)*/}
-          
-                        <Alert severity="error">{errorMessage}</Alert>
-  
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-
-                        {/*Este buton es el login el cual esta con la propiedad isAuthenticated que hace el cambio al cheking*/}
-
-                        <Button style={{background: "red"}}  type="submit" variant="contained" fullWidth>
+                        <p>Login</p>
                     
-                            Login
-                    
-                        </Button>
-                
-                    </Grid>
+                    </button>
 
-                    <Grid item xs={12} sm={6}>
-
-                        {/*Este buton es el login el cual esta con la propiedad isAuthenticated que hace el cambio al cheking*/}
-                        
-                        <Button style={{background: "red"}}  onClick={onGoogleSingIn} variant="contained" fullWidth aria-label="google-btn">
+                    <button className="form-button-google" onClick={onGoogleSingIn} aria-label="google-btn">
                        
-                            <Google></Google>
+                        <Google style={{paddingTop: 5}}></Google>
 
-                            <Typography sx={{ ml: 1 }}>Google</Typography>
+                        <p>Google</p>
                     
-                        </Button>
-
-                    </Grid>
+                    </button>
                 
-                </Grid>
+                </div>
 
-                <Grid container direction="row" justifyContent="end">
 
-                    {/*Aqui ponemos un link de la dependecia material ui que el componete que va a tilizar es el router link
-                        que va a dirigir a esta ruta/auth/register, (te manda a crear una nueva cuenta)
+                <div className="form-box-3">
+
+                    <Link style={{textDecoration: "none"}} color="inherit" to="/register">
                     
-                    */}
-                    
-                    <Link color="inherit" to="/register">
-                    
-                        Crea Tu Cuenta
+                        <p>Crea Tu Cuenta</p>
                     
                     </Link>
                 
-                </Grid>
+                </div>
         
-            </Grid>
+            </div>
       
         </form>
     
-    </AuthLayout>
+    </div>
 
   
   );

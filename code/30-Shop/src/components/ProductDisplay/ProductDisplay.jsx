@@ -8,9 +8,8 @@ export const ProductDisplay = (props) => {
 
     const {product} = props
 
-    const {add, remove} = useContext(ShopContext)
+    const {add} = useContext(ShopContext)
 
-  
     return (
       
         <div className='productdisplay'>
@@ -107,7 +106,6 @@ export const ProductDisplay = (props) => {
 
                 {(product.color === "green") && <p className="productdisplay-category"><span style={{color: "#259f48"}}>Category: {product.category}</span></p> }
                 
-
             </div>
 
         </div>

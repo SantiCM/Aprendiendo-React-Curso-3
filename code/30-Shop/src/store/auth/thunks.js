@@ -52,7 +52,7 @@ export const startLoginWithEmailPassword = ({email, password}) => {
 
     return async (dispatch) => {
         
-        dispatch(checkingCredencial())
+        dispatch(onCheking())
 
         const resp = await loginWithEmailPassword({email, password})
 

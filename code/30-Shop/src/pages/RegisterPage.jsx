@@ -1,10 +1,9 @@
-import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import { AuthLayout } from "../pages/ui/Auth";
+import { Link} from "react-router-dom";
 import { useForm } from "../hooks/useForm";
 import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startCreatingEmailPassword } from "../store/auth/thunks";
+import "./css/Form.css"
 
 //Esta variable es para que no haya problema con la renderizacion
 const formData = {
@@ -77,50 +76,32 @@ export const RegisterPage = () => {
   }
 
   return (
-    <AuthLayout title="Register">
 
-      {/*<h1>Form Valid:  {isFormValid ?  "Valido" : "Incorrecto"}</h1>*/}
-      
-      {/* En el form recibimos las animaciones y la propiedad onSubmit que recibe el onsunmit*/}
-      <form className="animate__animated animate__fadeIn animate__faster"  onClick={onSubmit}>
+    <div className="register">
+
+      <form onClick={onSubmit}>
         
-        <Grid container>
+        <div className="container-form-register">
 
-          <Grid item xs={12} sx={{ mt: 2 }} md={12} xl={12}>
+          <h1>Login Up</h1>
 
-            {/*Recibe de name y value del displayName
-              Resetear el input con onChage
-              y el error si el displayNameValid (las validaciones )inventira el valor y retorna lo contrario y dara el primer estado
-              y el helpertext que es la alert esque no cumple con los requisitos 
+          <div className="form-box">
             
-            */}
-            <TextField
-    
+            <input
+              className="inputs-register"
               label="Nombre Completo"
               type="text"
               placeholder="Ingresa Tu Nombre Completo"
-              fullWidth
               name="displayName"
               value= {displayName}
               onChange={onInputChanhge}
-              error={!!displayNameValid && formSubmitted}
-              helperText={displayNameValid}
-            > 
+              onError={!!displayNameValid && formSubmitted}
+            /> 
 
-            </TextField>
-      
-          </Grid>
+            {displayNameValid && <span className="valid-p">{formValidations.displayName}</span>}
 
-          <Grid item xs={12} sx={{ mt: 2 }} md={12} xl={12}>
-            
-            {/*Recibe de name y value del email
-              Resetear el input con onChage
-              y el error si el emailValid (las validaciones )inventira el valor y retorna lo contrario y dara el primer estado
-              y el helpertext que es la alert esque no cumple con los requisitos 
-            
-            */}
-            <TextField
-        
+            <input
+              className="inputs-register"
               label="Correo"
               type="email"
               placeholder="correodegoogle@gmail.com"
@@ -128,24 +109,14 @@ export const RegisterPage = () => {
               name="email"
               value= {email}
               onChange={onInputChanhge}
-              error={!!emailValid && formSubmitted} 
-              helperText={emailValid}
-            >
+              onError={!!emailValid && formSubmitted} 
 
-            </TextField>
-          
-          </Grid>
+            />
 
-          <Grid item xs={12} sx={{ mt: 2 }} md={12} xl={12}>
-            
-            {/*Recibe de name y value del password
-              Resetear el input con onChage
-              y el error si el passwordValid (las validaciones )inventira el valor y retorna lo contrario y dara el primer estado
-              y el helpertext que es la alert esque no cumple con los requisitos 
-            
-            */}
-            <TextField
-          
+            {emailValid && <span className="valid-p">{formValidations.email}</span>}
+
+            <input
+              className="inputs-register"
               label="Contraseña"
               type="password"
               placeholder="Ingresa tu contraseña"
@@ -153,57 +124,45 @@ export const RegisterPage = () => {
               name="password"
               value= {password}
               onChange={onInputChanhge}
-              error={!!passwordValid && formSubmitted}
-              helperText={passwordValid}
+              onError={!!passwordValid && formSubmitted }
+              //helperText={passwordValid}
             >
 
-            </TextField>
-          
-          </Grid>
+            </input> 
 
-          <Grid container spacing={2} sx={{ mb: 2, mt: 2 }}>
-            
-            {/*Aqui le decimos que si el display es que el erroMesagge que viene de el auth si es asi no recibe nada y si no es nulo*/}
-            <Grid item xs={12} sm={12} display={ !!errorMessage ? "" : "none" }>
-
-              {/*este alert es decir que las crendeciales estan fallando de firebase, (que ya existe ese email, etc)*/}
-    
-              <Alert severity="error">{errorMessage}</Alert>
+            {passwordValid && <span className="valid-p">{formValidations.password}</span>}
       
-            </Grid>
-          
-            <Grid item xs={12} sm={12}>
+          </div>
 
-              {/*Este buton es el login el cual esta con la propiedad isAuthenticated que hace el cambio al cheking*/}
-              <Button style={{background: "red"}}  disabled={isCheckingAuthenticade } type="submit" variant="contained" fullWidth>
-          
-                Crear Cuenta
-          
-              </Button>
-          
-            </Grid>
+          <div className="form-box-2-alert" style={{display: !!errorMessage ? <p>{errorMessage}</p> : "none"}}></div>
 
-          </Grid>
+          <div className="form-box-3-button">
 
-          <Grid container direction="row" justifyContent="end">
+            <button className="form-button-singup" disabled={isCheckingAuthenticade} type="submit">          
+                
+              <p>Crear Cuenta</p>
+          
+            </button>
+          
+          </div>
+
+          <div className="form-box-3">
             
+            <p>¿Ya tienes una cuenta?</p>
             
-            <Typography sx={{mr: 2}}>¿Ya tienes una cuenta?</Typography>
-            
-            {/*Mandamos un link del material ui que pasa a ser un routerLink de el router el cual redirecciona a /auth/login (cuenta ya creada) */}
-            <Link component={RouterLink} color="inherit" sx={{color: "black", textDecoration: "none"}} to="/login">
+            <Link style={{textDecoration: "none"}} to="/login">
 
-              Ingresar
+              <p>Ingresar</p>
             
             </Link>
           
-          </Grid>
+          </div>
+   
+        </div>
         
-        </Grid>
-      
       </form>
     
-    </AuthLayout>
+    </div>
   
   );
 

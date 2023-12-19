@@ -1,8 +1,8 @@
 import { useContext } from "react"
 import "./css/ShopCategory.css"
 import { ShopContext } from "../context/ShopContext"
-import dropdown from "../components/Assets/dropdown_icon.png"
 import { Item } from "../components/Item/Item"
+import { Link } from "react-router-dom"
 
 export const ShopCategory = (props) => {
 
@@ -21,12 +21,6 @@ export const ShopCategory = (props) => {
           <span>Showing</span> out of 36 products
 
         </p>
-
-        <div className="shopcategoyr-sort">
-
-          Sort By <img src={dropdown}></img>
-
-        </div>
 
       </div>  
 
@@ -55,7 +49,7 @@ export const ShopCategory = (props) => {
 
       <div className="shopcategory-loadmore">
 
-        Explore More
+        <Link to="/">Explore More</Link>
 
       </div>
 

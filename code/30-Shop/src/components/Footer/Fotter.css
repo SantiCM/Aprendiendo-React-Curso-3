@@ -37,17 +37,15 @@
 .fotter-icons-container {
   padding: 10px;
   padding-bottom: 6px;
-  background: #d6a3e1;
-  border: 1px solid #ebebeb;
 }
 
 .fotter-copyright {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   color: #1a1a1a;
   font-size: 20px;
 }

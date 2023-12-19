@@ -19,11 +19,11 @@ const getDefault = () => {
 
 const ShopContextProvider = (props) => {
 
-    const [cartItems, setCartItems] = useState(getDefault)
+    const [cartItems, setCartItems] = useState(getDefault())
 
     const add = (itemId) => {
         
-        setCartItems((prev) => ({...prev,[itemId]: prev[itemId] +1 }))
+        setCartItems((prev) => ({...prev,[itemId]:prev[itemId]+1}))
     
     }
 
@@ -33,9 +33,9 @@ const ShopContextProvider = (props) => {
     
     }
 
-    const totalAmount = () => {
+    const getTotal = () => {
         
-        let total = 0
+        let totalAmount = 0
 
         for(const item in cartItems) {
             
@@ -43,11 +43,11 @@ const ShopContextProvider = (props) => {
             
                 let info = all_product.find((product) => product.id === Number(item))
 
-                total += info.new_price * cartItems[item]
+                totalAmount += info.new_price * cartItems[item]
             
             }
 
-            return total
+            return totalAmount
         
         }
     
@@ -72,7 +72,7 @@ const ShopContextProvider = (props) => {
     }
 
 
-    const contextValue = {all_product, cartItems, add, remove, totalAmount, totalItems}
+    const contextValue = {all_product, cartItems, add, remove, getTotal, totalItems}
 
     return (
         

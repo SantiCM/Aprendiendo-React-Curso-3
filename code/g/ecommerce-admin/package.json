@@ -15,13 +15,17 @@
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
     "axios": "^1.6.2",
+    "firebase": "^10.7.1",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
+    "multiparty": "^4.2.3",
     "next": "latest",
     "next-auth": "^4.24.5",
     "react": "latest",
     "react-dom": "latest",
-    "react-router-dom": "^6.21.0"
+    "react-router": "^6.21.0",
+    "react-router-dom": "^6.21.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "autoprefixer": "latest",

@@ -4,13 +4,13 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import HomeIcon from '@mui/icons-material/Home';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
-import Link from "next/link"
+import Link from  "next/link"
 
 export default function Nav() {
 
     const inactiveLink = 'flex gap-2 p-1';
 
-    const activeLink = inactiveLink+" bg-white text-blue-900 rounded-l-lg";
+    const activeLink = inactiveLink+" bg-white text-blue-900 rounded-l-lg text-md";
 
     const router = useRouter()
 
@@ -18,49 +18,49 @@ export default function Nav() {
 
     return (
     
-        <aside className="text-white p-4 pr-0 pl-2">
+        <aside className="text-white p-4 pr-0 pl-4">
 
-            <Link href="/" className="flex gap-1 mb-4 mr-4">
+            <div className="flex gap-2 mb-3 mr-4">
 
                 <InventoryIcon></InventoryIcon>
 
                 Ecommerce Admin
 
-            </Link>
+            </div>
+             
+            <nav className="flex flex-col gap-3">
 
-            <nav className="flex flex-col gap-2">
+                <Link href={"/"} className={pathname.includes("/") ? activeLink : inactiveLink}>
 
-            <Link href={"/"}>
+                    <HomeIcon style={{marginTop: 2}}></HomeIcon>
 
-                <HomeIcon></HomeIcon>
+                    <span className="text-xl">Dashboard</span>
 
-                Dashboard
-     
-            </Link>
+                </Link>
 
-            <Link href={"/products"} className={pathname.includes("/products") ? activeLink : inactiveLink}>
+                <Link href={"/products"} className={pathname.includes("/products") ? activeLink : inactiveLink}>
 
-                <ListAltIcon></ListAltIcon>
+                    <ListAltIcon style={{marginTop: 2}}></ListAltIcon>
 
-                Products
-    
-            </Link>
+                    <span className="text-xl">Products</span>
 
-            <Link href="/orders" className={pathname.includes("/orders") ? activeLink : inactiveLink}>
+                </Link>
 
-                <Inventory2Icon></Inventory2Icon>
+                <Link href={"/orders"} className={pathname.includes("/orders") ? activeLink : inactiveLink}>
 
-                Orders
-    
-            </Link>
+                    <Inventory2Icon style={{marginTop: 2}}></Inventory2Icon>
 
-            <Link href="/settings" className={pathname.includes("/settings") ? activeLink : inactiveLink}>
+                    <span className="text-xl">Orders</span>
 
-                <SettingsIcon></SettingsIcon>
+                </Link>
 
-                Settings
-    
-            </Link>
+                <Link href={"/settings"} className={pathname.includes("/settings") ? activeLink : inactiveLink}>
+
+                    <SettingsIcon style={{marginTop: 2}}></SettingsIcon>
+
+                    <span className="text-xl">Settings</span>
+
+                </Link>
 
             </nav>
 

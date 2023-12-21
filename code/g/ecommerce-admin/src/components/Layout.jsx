@@ -1,5 +1,5 @@
 import { signIn, useSession } from "next-auth/react"
-import Nav from "./Nav"
+import Nav from "@/components/Nav";
 
 export default function Layout({children}) {
 
@@ -28,11 +28,15 @@ export default function Layout({children}) {
 
   return (
 
-    <div className="bg-blue-900 min-h-screen flex flex-1">
+    <div className="bg-blue-900 min-h-screen flex flex-2">
 
-      <Nav></Nav>
+      <div className="bg-gray-500 "> 
 
-      <div className="bg-white flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">{children}</div>
+        <Nav></Nav>
+
+      </div>
+
+      <div className="bg-white flex-grow mt-12 rounded-md p-6">{children}</div>
 
     </div>
 

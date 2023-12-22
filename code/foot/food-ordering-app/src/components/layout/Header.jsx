@@ -45,12 +45,15 @@ export default function Header () {
 
             <nav className="flex items-center gap-4 text-gray-900">
 
+                {/* Si el status es autenticado damos el  */}
                 {status === "authenticated" && (
                     
                     <>
 
+                        {/* Damos el link de el aparatado del perfil a la direccion del profile */}
                         <Link className="text-md m-3 bg-slate-300 text-black py-2 p-3 rounded-lg" href={"/profile"}>Hello, {userName}</Link>
 
+                        {/* Al darle click al boton hacemos el logout */}
                         <button onClick={() => signOut()} className="bg-primary rounded-lg text-white px-8 py-2 font-medium text-lg">Logout</button>
                     
                     </>
@@ -58,12 +61,15 @@ export default function Header () {
                     
                 )}
 
+                {/* Si el status es no-auntenticado */}
                 {status === "unauthenticated" && (
 
                     <>
 
+                        {/* Damos el link de registro */}
                         <Link href={"/register"} className="bg-primary rounded-lg text-white px-8 py-2 font-medium text-lg">Register</Link>
 
+                        {/* Damos el link de login */}
                         <Link href={"/login"} className="font-bold text-xl">Login</Link>    
                     
                     </>

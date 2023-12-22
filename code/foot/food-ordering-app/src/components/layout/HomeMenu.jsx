@@ -8,7 +8,7 @@ export default function HomeMenu(){
 
     return (
         
-        <section className="">
+        <section>
 
             <div className="absolute h-full left-0 right-0 w-full justify-start">
 

@@ -17,7 +17,7 @@ input[type="text"] {
 input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="text"]:disabled {
-  @apply bg-gray-200;
+  @apply bg-gray-500;
 }
 
 button {
@@ -27,10 +27,13 @@ button {
 
 button[type="submit"],
 .submit {
-  @apply border-0 bg-red-400 text-white;
+  @apply border-0 bg-tercer text-black;
 }
 
 button[type="submit"]:disabled,
 .submit:disabled {
   @apply cursor-not-allowed bg-red-200;
+}
+
+@media (min-width: 300px) and (max-width: 812px) {
 }

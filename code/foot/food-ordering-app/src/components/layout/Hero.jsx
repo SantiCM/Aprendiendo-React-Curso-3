@@ -1,5 +1,5 @@
 import Image from "next/image";
-import pizzaLogo from "../../../public/pizza.png"
+import foodLogo from "../../../public/margherita-pizza.jpg"
 import Right from "../icons/Right";
 
 export default function Hero() {
@@ -12,11 +12,11 @@ export default function Hero() {
 
                 <h1 className="text-5xl font-bold leading-normal">
                     
-                    Everything is better with a <span className="text-primary">Pizza</span>
+                    Do you want a huge variety of <span className="text-primary">FAST FOOD</span>?
                     
                 </h1>
 
-                <p className="my-5 font-medium text-gray-400">Pizza is the missing piece that makes every day complete, a simple yet delicious joy in life</p>
+                <p className="my-5 font-medium text-blackk">Here you will find the best fast food, with the greatest variety and extremely delicious.</p>
 
                 <div className="flex gap-4 ">
 
@@ -33,7 +33,7 @@ export default function Hero() {
 
                     <button 
                     
-                        className="flex items-center border-0 gap-2 py-2 text-gray-600 font-semibold"
+                        className="flex items-center border-0 gap-2 py-2 text-black font-semibold"
                     >
                         Learn More
 
@@ -45,9 +45,9 @@ export default function Hero() {
 
             </div>
             
-            <div className="relative">
+            <div className="grid">
 
-                <Image src={pizzaLogo} layout="fill" objectFit="contain" alt={"Pizza"} />
+                <Image src={foodLogo} width={200} height={200} alt={"Food"} />
 
             </div>
 

@@ -6,10 +6,31 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      'sm': '300px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    
+    }, 
+
     extend: {
       colors: {
         
-        primary: "#f13a01"
+        primary: "#ffa031",
+        secondary: "#ff8000",
+        tercer: "#ffffdf",
+        hovertercer: "#eeeeee"
       
       }
     },

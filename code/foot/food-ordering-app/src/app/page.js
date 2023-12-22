@@ -6,27 +6,11 @@ export default function Home() {
 
   return (
     
-    <>
+    <div>
 
       <Hero></Hero>
 
       <HomeMenu></HomeMenu>
-
-      <section className="text-center my-8">
-
-        <SectionHeaders 
-          subHeader={"Our Story"}
-          mainHeader={"About Us"}
-      
-        />
-
-        <p className="max-w-2xl mx-auto mt-4 text-gray-500">
-
-          Velit ad occaecat est aliquip duis duis nisi nostrud dolor fugiat incididunt deserunt aliquip voluptate. Eiusmod cupidatat consectetur amet reprehenderit non voluptate pariatur. Sint eiusmod sint officia officia anim nostrud dolor.
-          Ullamco magna in magna pariatur aute laborum do ea qui labore elit dolor culpa. 
-        </p>
-      
-      </section>
 
       <section className="text-center my-10">
 
@@ -50,7 +34,7 @@ export default function Home() {
    
       </footer>
 
-    </>
+    </div>
     
   )
 

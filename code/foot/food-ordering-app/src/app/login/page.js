@@ -38,7 +38,7 @@ export default function LoginPage(){
             
             <h1 className="text-center text-primary text-4xl pt-4">Login</h1>
 
-            <form className="block max-w-screen-sm mx-auto" onSubmit={handleForm}>
+            <form className="block max-w-screen mx-auto" onSubmit={handleForm}>
 
                 <input 
                     
@@ -76,7 +76,7 @@ export default function LoginPage(){
                 <div className="my-4 text-center text-gray-500 "><p>Or Login With Provider</p></div>
 
                 {/* Damos el button de que al hacer click damos el signIn de gogle y si pasa nos redireccionamos a esa pagina */}
-                <button type="button" onClick={() => signIn("google", {redirect: "/"})} className='flex gap-2 text-white bg-red-900'>
+                <button type="button" onClick={() => signIn("google", {redirect: "/"})} className='flex gap-2 text-black bg-white'>
 
                     <GoogleIcon></GoogleIcon>
                     

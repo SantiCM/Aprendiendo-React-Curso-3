@@ -29,7 +29,10 @@ export default function Header () {
         
         <header className="flex items-center justify-between">
 
-            <nav className="flex items-center gap-8 text-gray-900 font-bold text-xl">
+            <nav 
+                
+                className="flex items-center gap-8 text-secondary font-bold text-xl md:gap-10" // sm:flex-col
+            >
 
                 <Link href={"/"} className="text-primary font-semibold text-2xl" >PIZZA COMPANY</Link>
 
@@ -43,7 +46,7 @@ export default function Header () {
 
             </nav>
 
-            <nav className="flex items-center gap-4 text-gray-900">
+            <nav className="flex items-center gap-4 text-secondary md:gap-6"> {/*sm:flex-col*/}
 
                 {/* Si el status es autenticado damos el  */}
                 {status === "authenticated" && (
@@ -51,7 +54,7 @@ export default function Header () {
                     <>
 
                         {/* Damos el link de el aparatado del perfil a la direccion del profile */}
-                        <Link className="text-md m-3 bg-slate-300 text-black py-2 p-3 rounded-lg" href={"/profile"}>Hello, {userName}</Link>
+                        <Link className="text-md m-3 bg-slate-300 text-black py-3 p-4 rounded-lg" href={"/profile"}>Hello, {userName}</Link>
 
                         {/* Al darle click al boton hacemos el logout */}
                         <button onClick={() => signOut()} className="bg-primary rounded-lg text-white px-8 py-2 font-medium text-lg">Logout</button>
@@ -67,7 +70,7 @@ export default function Header () {
                     <>
 
                         {/* Damos el link de registro */}
-                        <Link href={"/register"} className="bg-primary rounded-lg text-white px-8 py-2 font-medium text-lg">Register</Link>
+                        <Link href={"/register"} className="bg-primary rounded-lg text-white px-8 py-2 font-medium text-lg md:ml-4">Register</Link>
 
                         {/* Damos el link de login */}
                         <Link href={"/login"} className="font-bold text-xl">Login</Link>    

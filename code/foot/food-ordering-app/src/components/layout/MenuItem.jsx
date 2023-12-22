@@ -4,17 +4,17 @@ export default function Menu() {
         
         <div 
             
-            className="bg-gray-200 p-4 group rounded-md text-center hover:bg-white hover:shadow-md hover:shadow-white/25 transition-all"
+            className="bg-tercer p-4 group rounded-md text-center hover:bg-hovertercer hover:shadow-md hover:shadow-white/25 transition-all"
             
         >
             
             <div className="text-center">
 
-                <img src="/pizza.png" className="max-h-auto max-h-24 block mx-auto" alt={"pizza"} />
+                <img src="/veggie-burger.jpg" className="max-h-auto max-h-24 block mx-auto" alt={"food in menu"} />
 
             </div>
 
-            <h4 className="font-semibold my-4 text-xl">Pepperoni Pizza</h4>
+            <h4 className="font-semibold my-4 text-xl">Food</h4>
 
             <p className="text-gray-600 text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt blanditiis beatae incidunt asperiores aspernatur tempore repellat a ad porro minima.</p>
 

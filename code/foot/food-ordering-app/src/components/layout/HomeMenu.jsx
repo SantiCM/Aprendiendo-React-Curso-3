@@ -20,7 +20,7 @@ export default function HomeMenu(){
 
                 <div className="absolute -top-[200px] right-0 -z-10">
 
-                    <Image src={ensaldLeft} width={107} height={195} alt="Ensalada"></Image>
+                    <Image src={ensaldLeft} width={107} height={100} alt="Ensalada"></Image>
                     
                 </div>
 

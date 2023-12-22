@@ -33,7 +33,7 @@ export default function Hero() {
 
                     <button 
                     
-                        className="flex gap-2 py-2 text-gray-600 font-semibold"
+                        className="flex items-center border-0 gap-2 py-2 text-gray-600 font-semibold"
                     >
                         Learn More
 

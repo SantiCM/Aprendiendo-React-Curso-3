@@ -1,25 +1,32 @@
 "use client"
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useState } from "react";
 
+// damos el header 
 export default function Header () {
 
+    // recojemos la sesion del auth 
     const session = useSession()
 
+    // el status sera la sesion si existe del status
     const status = session?.status
 
+    // la data del usuario es la session de la data si existe del usuario
     const dataUser = session.data?.user
 
+    // recojemos la data del username si existe del name
     let userName = dataUser?.name
 
+    // si el username pasa damos que si el name incluye 
     if(userName && userName.includes("")){
-        
+
+        // damos el split con un espacio y 0 de arreglo 
         userName = userName.split(" ")[0]
     
     }
   
     return (
+        
         <header className="flex items-center justify-between">
 
             <nav className="flex items-center gap-8 text-gray-900 font-bold text-xl">

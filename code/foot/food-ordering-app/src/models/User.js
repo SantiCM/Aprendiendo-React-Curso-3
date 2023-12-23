@@ -1,9 +1,10 @@
 import { Schema, model, models } from "mongoose"
-import bcrypt from "bcrypt"
 
 //Modelo del Schemma del user
 // damos un nuevo schema 
 const userSchemma = new Schema({
+
+    name: {type: String},
 
     // el  email sera de tipo string, requerido y unico
     email: {type: String, require: true, unique: true},
@@ -14,22 +15,6 @@ const userSchemma = new Schema({
         type: String, 
         
         require: true, 
-        
-        // la validacion, le damos que pasa
-        validate: pass => {
-
-            // si no pasa en su totalidad y el pase no pasado es menor a 5
-            if(!pass?.length || pass.length < 5) {
-
-                // damos el error 
-                new Error("Password Must Be At Least 5 Characters")
-
-                // retornamos falso
-                return false
-            
-            }
-        
-        }
     
     }
      
@@ -37,7 +22,7 @@ const userSchemma = new Schema({
 }, {timestamps: true})
 
 // si el usuario del schemma es posteado, damos el validate, damos una funcion y damos argumento del user
-userSchemma.post("validate", function (user) {
+/*userSchemma.post("validate", function (user) {
 
     // aqui el password no esta encriptado, lo recojemos del user del password
     const notHashedPassword = user.password
@@ -51,7 +36,7 @@ userSchemma.post("validate", function (user) {
     // el usuario del password sera el password ya encriptado
     user.password = hashedPassword
 
-})
+})*/
 
 // damos el user del schema de los models si pasa del usuario y del model del User, del userSchemma de arriba
 export const User = models?.User || model("User", userSchemma)

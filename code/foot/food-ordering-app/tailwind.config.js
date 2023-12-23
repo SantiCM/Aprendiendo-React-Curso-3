@@ -30,7 +30,8 @@ module.exports = {
         primary: "#ffa031",
         secondary: "#ff8000",
         tercer: "#ffffdf",
-        hovertercer: "#eeeeee"
+        hovertercer: "#eeeeee",
+        formprofile: "#ffffdf"
       
       }
     },

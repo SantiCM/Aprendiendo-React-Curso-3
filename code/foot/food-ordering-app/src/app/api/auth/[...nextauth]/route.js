@@ -7,12 +7,11 @@ import bcrypt from "bcrypt"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "../../../../libs/mongoConnect";
 
+
 // Damos el auth de next
 // en este caso dentro de la carpeta de app, damos otra carpeta de api, damos otra carpeta de auth
 // damos otra de [...nextauth] y damos el archivo que se llama route
-
-// damos el auth
-const handler = NextAuth({
+export const authOptions = {
 
   // la api secreta es la que queramos por defecto
   secret: process.env.SECRET,
@@ -86,7 +85,10 @@ const handler = NextAuth({
   
   ],
 
-});
+}
+
+// damos el auth
+const handler = NextAuth(authOptions)
 
 // exportamos la variable para get y post
 // viene por defecto en la doc de nextauth

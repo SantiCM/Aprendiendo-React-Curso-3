@@ -14,6 +14,7 @@ input[type="password"] {
 }
 
 input[type="text"],
+input[type="tel"],
 input[type="text"]:disabled {
   @apply flex justify-center w-full my-3 rounded-md;
   @apply block border p-2 border-gray-300 bg-gray-200;
@@ -38,5 +39,10 @@ button[type="submit"]:disabled,
   @apply cursor-not-allowed bg-red-200;
 }
 
-@media (min-width: 300px) and (max-width: 812px) {
+div.tabs > * {
+  @apply bg-tercer text-black rounded-lg py-3 px-6;
+}
+
+div.tabs > *.active {
+  @apply bg-green-300;
 }

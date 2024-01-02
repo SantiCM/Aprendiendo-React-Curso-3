@@ -46,7 +46,7 @@ export default function Header () {
 
             </nav>
 
-            <nav className="flex items-center gap-4 text-secondary md:gap-6"> {/*sm:flex-col*/}
+            <nav className="flex items-center gap-4 text-secondary"> {/*sm:flex-col*/}
 
                 {/* Si el status es autenticado damos el  */}
                 {status === "authenticated" && (

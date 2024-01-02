@@ -10,13 +10,19 @@ const userSchemma = new Schema({
     email: {type: String, require: true, unique: true},
 
     // el password es de tipo strin y requerido
-    password: {
-        
-        type: String, 
-        
-        require: true, 
-    
-    }
+    password: { type: String, require: true },
+
+    phone: {type: String},
+
+    streetAddress: {type: String},
+
+    postalCode: {type: String},
+
+    city: {type: String},
+
+    country: {type: String},
+
+    admin: {type: Boolean, default: false}
      
     // admiten una opción de marcas de tiempo en true 
 }, {timestamps: true})

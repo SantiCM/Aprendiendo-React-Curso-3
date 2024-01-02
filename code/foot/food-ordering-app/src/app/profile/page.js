@@ -1,6 +1,8 @@
 "use client"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
+import TabsProfile from "../../components/layout/TabsProfile"
+import InputProfile from "../../components/input/InputProfile"
 import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -8,15 +10,43 @@ export default function ProfilePage(){
 
     const session = useSession()
 
-    const [userName, setUserName] = useState("")
+    const [profileFetch, setProfileFetch] = useState(false)
+
+    const [admin, setAdmin] = useState(false)
 
     const {status} = session
+
+    const [saved, setSaved] = useState(false)
+
+    const [isSaving, setIsSaving] = useState(false)
 
     useEffect(() => {
       
         if(status === "authenticated") {
             
             setUserName(session.data.user.name)
+
+            fetch("/api/profile").then(response => {
+                
+                response.json().then(data => {
+                    
+                    setPhone(data.phone)
+                    
+                    setStreetAddress(data.streetAddress)
+                    
+                    setPostalCode(data.postalCode)
+                    
+                    setCity(data.city)
+                    
+                    setCountry (data.country) 
+                    
+                    setAdmin(data.admin)
+                    
+                    setProfileFetch(true)
+                    
+                })
+            
+            })
         
         }
       
@@ -24,22 +54,35 @@ export default function ProfilePage(){
     
 
     async function handleProfileInfo(ev) {
+
+        setSaved(false)
+
+        setIsSaving(true)
         
         ev.preventDefault()
 
         const response = await fetch("/api/profile", {
         
             method: "PUT",
-
+    
             headers: { "Content-Type": "application/json" },
-
-            body:JSON.stringify({name: userName})
-            
+    
+            body:JSON.stringify({ name: userName, streetAddress, phone, postalCode, city,  country})
+                
         })
+
+        setIsSaving(false)
+
+        if(response.ok) {
+        
+            setSaved(true)
+        
+        }
 
     }
 
-    if(status === "loading") {
+
+    if(status === "loading" || !profileFetch) {
         
         return "Loanding.."
     
@@ -55,36 +98,43 @@ export default function ProfilePage(){
 
     return (
         
-        <section className="mt-8 bg-formprofile h-80">
+        <section className="mt-8">
+            
+            <TabsProfile admin={admin}></TabsProfile>
 
-            <h1 className="text-center text-primary text-4xl pt-4">Profile</h1>
+            <div className="max-w-screen-sm mx-auto flex justify-center m-3">
 
-            <div className="max-w-md mx-auto mt-4">
+                {saved && (
 
-                <div className="flex gap-4 items-center">
+                    <div className="bg-green-200 rounded-lg text-xl p-2">Profile Saved!</div>
+
+                )}
+
+            </div>
+            
+            {isSaving && (
+                
+                <div className="rounded-lg text-xl p-2 text-center">Saving......</div>
+                
+            )}
+
+            <div className="max-w-md mx-auto">
+
+                <div className="flex gap-4">
 
                     <div>
 
                         <div className="relative rounded-lg p-2">
 
-                            <Image className="rounded-md w-full h-full mb-1" src={userImage} width={250} height={250}></Image>
+                            <Image className="rounded-md w-full h-full mb-10" src={userImage} width={250} height={250}></Image>
 
                         </div>
 
-                        <button type="button">Edit</button>
-
                     </div>
                 
-                    <form className="grow " onSubmit={handleProfileInfo}>
+                    <form className="grow" onSubmit={handleProfileInfo}>
 
-                        <input 
-                        
-                            type="text" placeholder="Please enter your full name" 
-                            value={userName} onChange={ev => setUserName(ev.target.value)}
-                        
-                        ></input>
-
-                        <input type="email" disabled={true} value={session.data.user.email}></input>
+                        <InputProfile></InputProfile>
 
                         <button className="bg-primary text-white" type="submit">Save</button>
 

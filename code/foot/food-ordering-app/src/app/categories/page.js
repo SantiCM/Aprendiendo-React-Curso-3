@@ -1,27 +1,65 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TabsProfile from "../../components/layout/TabsProfile";
 import UserProfile from "../../components/UserProfile";
 
 export default function CategoriesPage(){
 
-    const [newCategoryName, setNewCategoryName] = useState("")
+    const [categoryName, setCategoryName] = useState("")
+
+    const [categories, setCategories] = useState([])
+
+    const [edited, setEdited] = useState(null)
 
     const { data: profileData , loanding: profileLoanding } = UserProfile()
 
+    useEffect(() => {
+      
+        fetchCategories()
+
+    }, [])
+
+    function fetchCategories() {
+        
+        fetch("api/categories").then(response => {
+        
+            response.json().then(categories => {
+            
+                setCategories(categories)
+            
+            })
+        
+        })
+    
+    }
+    
     async function handleNewCategory(ev) {
         
         ev.preventDefault()
 
+        const data = { name: categoryName }
+
+        if(edited) {
+             
+            data._id = edited._id
+        
+        }
+
         const response = await fetch("/api/categories", {  
 
-            method: "POST",
+            method: edited ? "PUT" : "POST",
     
             headers: { "Content-Type": "application/json" },
                 
-            body: JSON.stringify( { name: newCategoryName } ), 
+            body: JSON.stringify(data), 
             
         })
+
+        setCategoryName("")
+
+        fetchCategories()
+
+        setEdited(null)
 
     }
 
@@ -49,15 +87,29 @@ export default function CategoriesPage(){
 
                     <div className="grow">
 
-                        <label className="text-gray-900 text-md uppercase">New Category Name</label>
+                        <label className="text-gray-900 text-md uppercase">
+
+                            {edited ? "Update Category" : "New Category Name"}
+
+                            {edited && (
+                                
+                                <>
+
+                                    : <b className="text-red-600">{edited.name}</b>
+
+                                </>         
+
+                            )}
+
+                        </label>
 
                         <input 
                         
                             type="text"
 
-                            value={newCategoryName}
+                            value={categoryName}
 
-                            onChange={ev => setNewCategoryName(ev.target.value)}
+                            onChange={ev => setCategoryName(ev.target.value)}
                             
                         ></input>
 
@@ -65,13 +117,45 @@ export default function CategoriesPage(){
 
                     <div className="pb-3">
 
-                        <button className="bg-secondary  text-white border-none" type="submit">Create</button>
+                        <button className="bg-secondary  text-white border-none" type="submit">
+                            
+                            {edited ? "Update" : "Create" }
+
+                        </button>
 
                     </div>
 
                 </div>
 
             </form>
+
+            <div>
+
+                <h2 className="mb-2 text-lg pl-4 bg-bgform p-2 text-black text-center">Edit Category</h2>
+
+                {categories?.length > 0 && categories.map((text) => (
+                    
+                    <div className="bg-white rounded-lg p-1 flex mx-auto cursor-pointer uppercase m-2">
+        
+                        <button onClick={() => {
+                            
+                            setEdited(text)
+
+                            setCategoryName(text.name)
+                            
+                        }} className="border-none text-lg text-primary"
+                        
+                        >
+                            
+                            {text.name}
+                        
+                        </button>
+ 
+                    </div>
+                    
+                ))}
+
+            </div>
 
         </section>
            

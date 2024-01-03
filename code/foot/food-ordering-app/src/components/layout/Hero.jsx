@@ -1,5 +1,3 @@
-import Image from "next/image";
-import foodLogo from "../../../public/margherita-pizza.jpg"
 import Right from "../icons/Right";
 
 export default function Hero() {
@@ -8,17 +6,17 @@ export default function Hero() {
         
         <section className="hero mt-8">
 
-            <div className="py-12">
+            <div className="max-w-screen">
 
-                <h1 className="text-5xl font-bold leading-normal">
+                <h1 className="text-5xl font-bold">
                     
-                    Do you want a huge variety of <span className="text-primary">FAST FOOD</span>?
+                    <p>Do you want a huge variety of <span className="text-primary">FAST FOOD</span>?</p>
                     
                 </h1>
 
-                <p className="my-5 font-medium text-blackk">Here you will find the best fast food, with the greatest variety and extremely delicious.</p>
+                <p className="my-5 font-medium text-black text-2xl">Here you will find the best fast food, with the greatest variety and extremely delicious.</p>
 
-                <div className="flex gap-4 ">
+                <div className="flex gap-4">
 
                     <button 
                     
@@ -44,12 +42,7 @@ export default function Hero() {
                 </div>
 
             </div>
-            
-            <div className="grid">
 
-                <Image src={foodLogo} width={200} height={200} alt={"Food"} />
-
-            </div>
 
         </section>
         

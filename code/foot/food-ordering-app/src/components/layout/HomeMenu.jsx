@@ -22,7 +22,7 @@ export default function HomeMenu(){
 
             </div>
 
-            <div className="grid grid-cols-3 gap-6 sm:grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-3 gap-6 max-w-max"> {/* sm:grid-cols-1 md:grid-cols-2*/}
 
                 <Menu></Menu>
 

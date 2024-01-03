@@ -31,7 +31,9 @@ module.exports = {
         secondary: "#ff8000",
         tercer: "#ffffdf",
         hovertercer: "#eeeeee",
-        formprofile: "#ffffdf"
+        formprofile: "#ffffdf",
+        bgform: "#ebe939",
+        hoverMenu: "#ffff00"
       
       }
     },

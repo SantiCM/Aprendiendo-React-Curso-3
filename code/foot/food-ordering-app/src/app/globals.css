@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 section.hero {
-  @apply grid;
-  grid-template-columns: 6fr 6fr;
+  @apply flex items-center justify-center;
 }
 
 input[type="email"],

@@ -129,15 +129,17 @@ export default function ProfilePage(){
                 
             )}
 
+            <div className="bg-white pt-5 rounded-3xl">
+
             <div className="max-w-md mx-auto">
 
-                <div className="flex gap-4">
+                <div className="grid">
 
-                    <div>
+                    <div className="flex justify-center">
 
-                        <div className="relative rounded-lg p-2">
+                        <div className="rounded-lg p-2">
 
-                            <Image className="rounded-md w-full h-full mb-10" src={userImage} alt="Image User Google" width={250} height={250}></Image>
+                            <Image className="rounded-md" src={userImage} alt="Image User Google" width={100} height={100}></Image>
 
                         </div>
 
@@ -231,13 +233,15 @@ export default function ProfilePage(){
     
                         ></input>
 
-                        <button className="bg-primary text-white" type="submit">Save</button>
+                        <button className="bg-primary text-white mb-4" type="submit">Save</button>
 
                     </form>
 
                 </div>
 
             </div> 
+
+            </div>
          
         </section>
     

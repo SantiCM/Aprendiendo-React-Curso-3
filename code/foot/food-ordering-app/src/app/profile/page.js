@@ -2,17 +2,28 @@
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import TabsProfile from "../../components/layout/TabsProfile"
-import InputProfile from "../../components/input/InputProfile"
 import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function ProfilePage(){
 
-    const session = useSession()
+    const [userName, setUserName] = useState("")
+
+    const [phone, setPhone] = useState("")
+
+    const [streetAddress, setStreetAddress] = useState("")
+
+    const [postalCode, setPostalCode] = useState("")
+
+    const [city, setCity] = useState("")
+
+    const [country, setCountry] = useState("")
 
     const [profileFetch, setProfileFetch] = useState(false)
 
     const [admin, setAdmin] = useState(false)
+
+    const session = useSession()
 
     const {status} = session
 
@@ -126,7 +137,7 @@ export default function ProfilePage(){
 
                         <div className="relative rounded-lg p-2">
 
-                            <Image className="rounded-md w-full h-full mb-10" src={userImage} width={250} height={250}></Image>
+                            <Image className="rounded-md w-full h-full mb-10" src={userImage} alt="Image User Google" width={250} height={250}></Image>
 
                         </div>
 
@@ -134,7 +145,91 @@ export default function ProfilePage(){
                 
                     <form className="grow" onSubmit={handleProfileInfo}>
 
-                        <InputProfile></InputProfile>
+                        <input
+    
+                            type="text"
+
+                            placeholder="Please enter your full name"
+
+                            value={userName}
+
+                            onChange={(ev) => setUserName(ev.target.value)}
+
+                        ></input>
+
+                        <input
+
+                            type="email"
+
+                            disabled={true}
+
+                            value={session.data.user.email}
+
+                        ></input>
+
+                        <input
+
+                            type="tel"
+
+                            placeholder="Phone Number"
+
+                            value={phone}
+
+                            onChange={(ev) => setPhone(ev.target.value)}
+
+                        ></input>
+
+                        <input
+    
+                            type="text"
+
+                            placeholder="Street address"
+
+                            value={streetAddress}
+
+                            onChange={(ev) => setStreetAddress(ev.target.value)}
+
+                        ></input>
+
+                        <div className="flex gap-2">
+    
+                            <input
+                            
+                                type="text"
+                            
+                                placeholder="City"
+                            
+                                value={city}
+                            
+                                onChange={(ev) => setCity(ev.target.value)}
+                            
+                            ></input>
+
+                            <input
+        
+                                type="text"
+        
+                                placeholder="Postal Code"
+        
+                                value={postalCode}
+        
+                                onChange={(ev) => setPostalCode(ev.target.value)}
+
+                            ></input>
+
+                        </div>
+
+                        <input
+    
+                            type="text"
+    
+                            placeholder="Country"
+    
+                            value={country}
+    
+                            onChange={(ev) => setCountry(ev.target.value)}
+    
+                        ></input>
 
                         <button className="bg-primary text-white" type="submit">Save</button>
 

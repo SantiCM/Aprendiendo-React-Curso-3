@@ -5,6 +5,7 @@ import TabsProfile from "../../../components/layout/TabsProfile"
 import Link from "next/link"
 import Right from "../../../components/icons/Right"
 import {redirect} from "next/navigation"
+import Image from "../../../components/EditableImage"
 
 export default function NewMenuItemPage() {
 
@@ -88,7 +89,7 @@ export default function NewMenuItemPage() {
 
                             <label className="text-gray-900 text-md uppercase">Image</label>
         
-                            <input type="file" className="mb-5"></input>
+                            <Image link={image} setLink={setImage}></Image>
 
                         </div>
 

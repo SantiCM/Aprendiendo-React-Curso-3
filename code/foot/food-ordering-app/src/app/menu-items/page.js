@@ -59,7 +59,7 @@ export default function Menu() {
 
             </div>
 
-            <div>
+            <div className="max-h-full">
 
                 <h2 className="text-xl font-semibold pt-3">Edit Menu Item:</h2>
 

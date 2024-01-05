@@ -18,7 +18,7 @@ export default function TabsProfile ({admin}) {
                     
                     <Link className={path === "/categories" ? "active" : ""} href={"/categories"}>Categories</Link>
 
-                    <Link className={path === "/menu-items" ? "active" : ""} href={"/menu-items"}>Menu</Link>
+                    <Link className={path.includes("menu-items") ? "active" : ""} href={"/menu-items"}>Menu</Link>
 
                     <Link className={path === "/admins" ? "active" : ""} href={"/admins"}>Users</Link>
                     

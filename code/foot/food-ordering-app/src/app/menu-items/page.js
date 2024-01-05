@@ -1,11 +1,31 @@
 "use client"
+import Link from "next/link";
 import UserProfile from "../../components/UserProfile";
 import TabsProfile from "../../components/layout/TabsProfile";
-
+import Right from "../../components/icons/Right";
+import { useEffect, useState } from "react";
+//import Image from "next/image";
 
 export default function Menu() {
 
+    const [menuItems, setMenuItems] = useState([])
+
     const { data: profileData , loanding: profileLoanding } = UserProfile()
+
+    useEffect(() => {
+     
+        fetch("/api/menu-items").then(response => {
+        
+            response.json().then(menuItems => {
+            
+                setMenuItems(menuItems)
+            
+            })
+        
+        })
+
+    }, [])
+    
 
     if(profileLoanding) {
         
@@ -21,41 +41,50 @@ export default function Menu() {
 
     return (
         
-        <section className="mt-8">
-            
+        <section className="mt-8 max-w-md mx-auto">
+
             <TabsProfile admin={true}></TabsProfile>
 
-            <div className="bg-white pt-2 rounded-2xl">
+            <div className="mt-8 flex justify-center bg-primary  p-3 rounded-lg gap-3">
 
-            <form className="mt-7 max-w-lg mx-auto">
+                <Link className="font-semibold text-xl text-white" href={"/menu-items/new"}
                 
-                <div className="flex gap-2 items-end">
+                >
+                    
+                    <p>Create New Menu Item</p>
+                    
+                </Link>
 
-                    <div className="grow">
+                <Right></Right>
 
-                        <label className="text-gray-900 text-md uppercase">Name</label>
-        
-                        <input type="text"></input>
+            </div>
 
-                        <label className="text-gray-900 text-md uppercase">Price</label>
-        
-                        <input type="text"></input>
+            <div>
 
-                        <label className="text-gray-900 text-md uppercase">Base Price</label>
-        
-                        <input type="text"></input>
+                <h2 className="text-xl font-semibold pt-3">Edit Menu Item:</h2>
 
-                        <label className="text-gray-900 text-md uppercase">Image</label>
-        
-                        <input type="text"></input>
+                {menuItems.length > 0 && menuItems.map((item) => (
 
-                        <button className="bg-primary text-white border-none mb-8" type="submit">Save</button>
-            
-                    </div>
+                    <>                    
+                        <div className="bg-white rounded-lg p-2 flex justify-center mx-auto cursor-pointer uppercase m-2">
 
-                </div>
+                            <Link href={"/menu-items/edit/"+item._id} 
+                            
+                                className="border-none text-lg font-semibold text-primary"
+                            
+                            >
 
-            </form>
+                                {/*<Image src={item.image} alt="Photo Menu Item"></Image>*/}
+                                
+                                {item.name}
+                                
+                            </Link>
+
+                        </div>
+                    
+                    </>
+
+                ))}
 
             </div>
 

@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 section.hero {
-  @apply flex items-center justify-center;
 }
 
 input[type="email"],
@@ -24,9 +23,10 @@ input[type="password"]:disabled {
   @apply bg-gray-100;
 }
 
-button {
-  @apply flex mx-auto text-gray-700 font-semibold;
-  @apply border rounded-md  px-6 py-2;
+button,
+.button {
+  @apply flex mx-auto text-gray-700 font-semibold border-gray-600;
+  @apply rounded-md  px-6 py-2;
 }
 
 button.submit {

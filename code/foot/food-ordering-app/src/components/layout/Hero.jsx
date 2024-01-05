@@ -1,4 +1,6 @@
 import Right from "../icons/Right";
+//import ImgHeader from "../../../public/margherita-pizza.jpg"
+//import Image from "next/image";
 
 export default function Hero() {
 
@@ -6,21 +8,21 @@ export default function Hero() {
         
         <section className="hero mt-8">
 
-            <div className="max-w-screen">
+            <div>
 
-                <h1 className="text-5xl font-bold">
+                <h1 className="text-5xl font-bold text-center">
                     
-                    <p>Do you want a huge variety of <span className="text-primary">FAST FOOD</span>?</p>
+                    <p>Do you want a huge variety of <p className="text-primary pt-3">FAST FOOD ?</p></p>
                     
                 </h1>
 
-                <p className="my-5 font-medium text-black text-2xl">Here you will find the best fast food, with the greatest variety and extremely delicious.</p>
+                <p className="my-5 font-medium text-gray-500 text-3xl text-center">Here you will find the best fast food, with the greatest variety and extremely delicious.</p>
 
-                <div className="flex gap-4">
+                <div className="flex justify-center mb-7">
 
                     <button 
                     
-                        className="bg-primary text-white px-5 py-2 rounded-md items-center flex gap-2"
+                        className="bg-primary text-white px-5 py-2 rounded-md gap-2"
                         
                     >
                         Order Now
@@ -29,9 +31,11 @@ export default function Hero() {
                         
                     </button>
 
+                    
+    
                     <button 
                     
-                        className="flex items-center border-0 gap-2 py-2 text-black font-semibold"
+                        className="flex items-center bg-white border-0 gap-2 py-2 text-black font-semibold"
                     >
                         Learn More
 

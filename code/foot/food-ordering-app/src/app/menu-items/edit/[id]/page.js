@@ -1,13 +1,13 @@
 "use client"
 import { useState } from "react"
-import UserProfile from "../../../components/UserProfile"
-import TabsProfile from "../../../components/layout/TabsProfile"
+import UserProfile from "../../../../components/UserProfile"
+import TabsProfile from "../../../../components/layout/TabsProfile"
 import Link from "next/link"
-import Right from "../../../components/icons/Right"
+import Right from "../../../../components/icons/Right"
 import {redirect} from "next/navigation"
-import EditableImage from "../../../components/EditableImage"
+import EditableImage from "../../../../components/EditableImage"
 
-export default function NewMenuItemPage() {
+export default function EditMenuItemPage() {
 
     // damos el estado de las imagenes 
     const [images, setImages] = useState("")

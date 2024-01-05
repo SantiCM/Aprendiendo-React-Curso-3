@@ -4,6 +4,7 @@ import UserProfile from "../../components/UserProfile";
 import TabsProfile from "../../components/layout/TabsProfile";
 import Right from "../../components/icons/Right";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 //import Image from "next/image";
 
 export default function Menu() {
@@ -11,6 +12,10 @@ export default function Menu() {
     const [menuItems, setMenuItems] = useState([])
 
     const { data: profileData , loanding: profileLoanding } = UserProfile()
+
+    const cssText = "text-primary"
+
+    const cssTextItem = "text-black"
 
     useEffect(() => {
      
@@ -49,9 +54,7 @@ export default function Menu() {
 
                 <Link className="font-semibold text-xl text-white" href={"/menu-items/new"}
                 
-                >
-                    
-                    <p>Create New Menu Item</p>
+                > <p>Create New Menu Item</p>
                     
                 </Link>
 
@@ -59,30 +62,37 @@ export default function Menu() {
 
             </div>
 
-            <div className="max-h-full">
+            <div>
 
-                <h2 className="text-xl font-semibold pt-3">Edit Menu Item:</h2>
+                <h2 className="text-xl font-semibold pt-3 pl-3">Edit Menu Item:</h2>
 
                 {menuItems.length > 0 && menuItems.map((item) => (
 
-                    <>                    
-                        <div className="bg-white rounded-lg p-2 flex justify-center mx-auto cursor-pointer uppercase m-2">
+                    <div className="max-w-1xl"> 
 
-                            <Link href={"/menu-items/edit/"+item._id} 
-                            
-                                className="border-none text-lg font-semibold text-primary"
-                            
-                            >
+                        <div className="bg-white rounded-xl flex p-2 gap-3 cursor-pointer uppercase m-3">
 
-                                {/*<Image src={item.image} alt="Photo Menu Item"></Image>*/}
-                                
-                                {item.name}
-                                
-                            </Link>
+                            <Image src={item.images} width={120} height={100}></Image>
+
+                            <div className="flex flex-col text-xl pt-4 gap-4 font-semibold">
+
+                                <Link href={"/menu-items/edit/"+item._id} 
+                            
+                                    className="text-primary"
+                         
+                                >  <p>NAME: <span className={cssTextItem}>{item.name}</span></p>
+
+                                </Link>    
+
+                                <p className={cssText}>Description: <span className={cssTextItem}>{item.description}</span></p>
+
+                                <p className={cssText}>Base Price: <span className={cssTextItem}>${item.basePrice}</span></p>
+
+                            </div>
 
                         </div>
                     
-                    </>
+                    </div>
 
                 ))}
 

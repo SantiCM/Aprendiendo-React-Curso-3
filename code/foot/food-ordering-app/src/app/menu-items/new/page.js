@@ -5,11 +5,10 @@ import TabsProfile from "../../../components/layout/TabsProfile"
 import Link from "next/link"
 import Right from "../../../components/icons/Right"
 import {redirect} from "next/navigation"
-import Image from "../../../components/EditableImage"
 
 export default function NewMenuItemPage() {
 
-    const [image, setImage] = useState("")
+    const [images, setImages] = useState("")
 
     const [name, setName] = useState("")
 
@@ -19,11 +18,51 @@ export default function NewMenuItemPage() {
 
     const [redirectSubmit, setRedirectSubmit] = useState(false)
 
+    const [loanding, setLoanding] = useState(false)
+
+    const cssLabel = "text-gray-900 text-md uppercase"
+  
+    async function handleFile(ev) {
+    
+        const files = ev.target.files
+
+        const data = new FormData()
+
+        data.append("file", files[0])
+
+        data.append("upload_preset", "images")
+
+        setLoanding(true)
+
+        const response = await fetch(
+      
+            "https://api.cloudinary.com/v1_1/dqprmrwka/image/upload",
+
+            {
+        
+                method: "POST", body: data
+      
+            }
+      
+        )
+
+        const file = await response.json()
+
+        console.log(response)
+
+        setImages(file.secure_url)
+
+        console.log(file)
+
+        setLoanding(false)
+    
+    }
+
     async function handleFormSubmit(ev) {
         
         ev.preventDefault()
 
-        const data = {image, name, description, basePrice}
+        const data = {images, name, description, basePrice}
 
         const response = await fetch("/api/menu-items", {
         
@@ -73,26 +112,40 @@ export default function NewMenuItemPage() {
 
                     <div className="grow">
 
-                        <label className="text-gray-900 text-md uppercase">Name</label>
+                        <label className={cssLabel}>Name</label>
         
                         <input type="text" value={name} onChange={ev => setName(ev.target.value)}></input>
 
-                        <label className="text-gray-900 text-md uppercase">Description</label>
+                        <label className={cssLabel}>Description</label>
         
                         <input type="text" value={description} onChange={ev => setDescription(ev.target.value)}></input>
 
-                        <label className="text-gray-900 text-md uppercase">Base Price</label>
+                        <label className={cssLabel}>Base Price</label>
         
                         <input type="text" value={basePrice} onChange={ev => setBasePrice(ev.target.value)}></input>
+                        
+                        <label className={cssLabel}>Image</label>
 
-                        <div className="flex flex-col gap-3">
+                        <div className="relative bg-gray-200 rounded-md p-2">
 
-                            <label className="text-gray-900 text-md uppercase">Image</label>
-        
-                            <Image link={image} setLink={setImage}></Image>
+                            <input type="file"  onChange={handleFile}/>
+
+                            <span className="block text-2xl text-black cursor-pointer">Edit</span>
 
                         </div>
 
+                        {!images && (
+                                
+                                <div className="bg-bgform p-2 mt-3 flex justify-center mb-4 rounded-md">
+
+                                    <p className="text-xl">No Image Select</p>
+
+                                </div>
+                                
+                            )}
+
+                            {loanding ? <h3 className="text-center font-semibold text-xl">Loanding...</h3> : images && <img className="w-full h-full" src={images}></img>}
+                            
                         <button className="bg-primary text-white border-none mb-8" type="submit">Save</button>
 
                         <div className="flex justify-center bg-tercer max-w-sm mx-auto p-3 rounded-lg gap-3 mb-4">

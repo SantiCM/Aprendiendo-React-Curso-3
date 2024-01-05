@@ -93,7 +93,7 @@ export default function RegisterPage() {
                 
                 <div className='mt-4 text-center text-xl'>
 
-                   An Error has ocurred. Please try again later <ErrorIcon></ErrorIcon>
+                   <p>An Error has ocurred. Please try again later</p> <ErrorIcon></ErrorIcon>
 
                 </div>
                 
@@ -106,6 +106,7 @@ export default function RegisterPage() {
                     
                     type="text" 
                     placeholder="Please enter you email" 
+                    name='email'
                     // valor del email
                     value={email} 
                     // no se puede dar click si se esta creando el usuario
@@ -119,6 +120,7 @@ export default function RegisterPage() {
                 
                     type="password" 
                     placeholder="Please enter you password" 
+                    name='password'
                     // valor del password
                     value={password} 
                     // no se puede dar click si se esta creando el usuario
@@ -138,13 +140,13 @@ export default function RegisterPage() {
 
                     <GoogleIcon></GoogleIcon>
                     
-                    Login with Google
+                    <p>Login with Google</p>
                     
                 </button>
 
                 <div className='text-center my-4 text-xl text-gray-500'>
 
-                    Existing account? <Link className='underline' href={"/login"}>Login Here</Link>
+                    <p>Existing account?</p> <Link className='underline' href={"/login"}>Login Here</Link>
 
                 </div>
 

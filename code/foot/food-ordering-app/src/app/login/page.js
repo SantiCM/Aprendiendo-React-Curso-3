@@ -61,6 +61,7 @@ export default function LoginPage(){
                     placeholder="Please enter you password" 
                     // valor del email
                     name="password"
+                    autoComplete="on"
                     // valor del email
                     value={password} 
                     // no se puede dar click si se esta creando el usuario
@@ -76,11 +77,11 @@ export default function LoginPage(){
                 <div className="my-4 text-center text-gray-500 "><p>Or Login With Provider</p></div>
 
                 {/* Damos el button de que al hacer click damos el signIn de gogle y si pasa nos redireccionamos a esa pagina */}
-                <button type="button" onClick={() => signIn("google", {redirect: "/"})} className='flex gap-2 text-black bg-white'>
+                <button type="button" onClick={() => signIn("google")} className='flex gap-2 text-black bg-white'>
 
                     <GoogleIcon></GoogleIcon>
                     
-                    Login with Google
+                    <p>Login with Google</p>
                     
                 </button>
 

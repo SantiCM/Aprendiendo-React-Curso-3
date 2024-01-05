@@ -34,7 +34,7 @@ export default function Header () {
                 className="flex items-center gap-8 text-secondary font-bold text-xl " // sm:flex-col md:gap-10
             >
 
-                <Link href={"/"} className="text-primary font-semibold text-2xl" >PIZZA COMPANY</Link>
+                <Link href={"/"} className="text-primary font-semibold text-2xl">PIZZA COMPANY</Link>
 
                 <Link href={"/"}>Home</Link>
 

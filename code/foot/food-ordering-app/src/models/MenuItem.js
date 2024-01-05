@@ -2,7 +2,7 @@ import {Schema, model, models} from "mongoose"
 
 const MenuItemSchemma = new Schema({
 
-    image: {type: String},
+    images: {type: String},
 
     name: {type: String},
 

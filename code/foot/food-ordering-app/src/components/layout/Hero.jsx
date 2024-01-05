@@ -12,7 +12,9 @@ export default function Hero() {
 
                 <h1 className="text-5xl font-bold text-center">
                     
-                    <p>Do you want a huge variety of <p className="text-primary pt-3">FAST FOOD ?</p></p>
+                    <p>Do you want a huge variety of</p>
+
+                    <p className="text-primary pt-3">FAST FOOD ?</p>
                     
                 </h1>
 
@@ -25,19 +27,18 @@ export default function Hero() {
                         className="bg-primary text-white px-5 py-2 rounded-md gap-2"
                         
                     >
-                        Order Now
+                        <p>Order Now</p>
 
                         <Right></Right>
                         
                     </button>
 
-                    
     
                     <button 
                     
                         className="flex items-center bg-white border-0 gap-2 py-2 text-black font-semibold"
                     >
-                        Learn More
+                        <p>Learn More</p>
 
                         <Right></Right>
                     

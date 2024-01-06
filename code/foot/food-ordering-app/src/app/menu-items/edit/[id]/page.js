@@ -69,32 +69,42 @@ export default function EditMenuItemPage() {
     
     }
 
+    // boton de eliminar
     async function handleDelete() {
         
-        const response = await fetch("/api/menu-items?_id="+id, {
+        // recojemos la res del await del fetch del api de menu "?" si viene damos el 
+        // _id (de mongo) + el id de params
+         const response = await fetch("/api/menu-items?_id="+id, {
             
+            // metodo DELETE
             method: "DELETE",
         
         })
 
+        // nos redireccionamos a la hora de eliminar
         setRedirectSubmit(true)
     
     }
 
+    // si pasa el submit
     if(redirectSubmit) {
         
+        // retornamos el redirect a menu-items
         return redirect("/menu-items")
     
     }
 
+    // recojemos la data y el loanding del profile
     const { data: profileData , loanding: profileLoanding } = UserProfile()
 
+    // si pasa el loanding, damos el retornar
     if(profileLoanding) {
         
         return "Loanding User Info..."
     
     }
 
+    // si la data del admin es falso, damos el retorno
     if(profileData.admin) {
         
         return "Not And Admin"

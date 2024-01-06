@@ -13,8 +13,6 @@ export default function CategoriesPage(){
 
     const [edited, setEdited] = useState(null)
 
-    const [existing, setExisting] = useState(null)
-
     const { data: profileData , loanding: profileLoanding } = UserProfile()
 
     useEffect(() => {
@@ -75,8 +73,6 @@ export default function CategoriesPage(){
         })
 
         fetchCategories()
-
-    
     }
 
     if(profileLoanding) {
@@ -131,11 +127,26 @@ export default function CategoriesPage(){
 
                     </div>
 
-                    <div className="pb-3">
+                    <div className="pb-3 flex gap-4">
 
                         <button className="bg-secondary  text-white border-none" type="submit">
                             
                             {edited ? "Update" : "Create" }
+
+                        </button>
+
+                        <button 
+                        
+                            className="bg-red-500  text-white border-none" type="button"
+
+                            onClick={() => {
+                                
+                                setEdited(null); 
+                                
+                                setCategoryName("")
+                            }}
+                            
+                        >  Cancel
 
                         </button>
 
@@ -149,33 +160,31 @@ export default function CategoriesPage(){
 
                 <h2 className="mb-2 text-lg pl-2 text-black">Existing Categories</h2> 
                     
-                {categories?.length > 0 && categories.map((text) => (
+                {categories?.length > 0 && categories.map((text, index) => (
                     
-                    <div className="bg-white rounded-lg flex p-2 cursor-pointer uppercase m-2">
+                    <div key={index} className="bg-white rounded-lg flex p-2 items-center cursor-pointer uppercase m-2">
 
-                        <div className="flex gap-3 pl-3 pt-4">
+                        <div className="grow">
 
                             <p className="font-bold text-primary text-xl">{text.name}</p>
 
                         </div>
 
-                        <div className="flex flex-1 pt-2 justify-between">
+                        <div className="flex">
 
                             <button onClick={() => {
                             
                                 setEdited(text)
 
                                 setCategoryName(text.name)
-                            
+                    
                             }} className="border-none text-lg text-primary"
-                        
-                            >
-                            
-                                <EditIcon></EditIcon>
-                        
+                
+                            >  <EditIcon></EditIcon>
+                
                             </button>
 
-                            <button onClick={() => handleDelete(text._id)}><DeleteIcon></DeleteIcon></button>
+                            <button className="text-red-500" onClick={() => handleDelete(text._id)}><DeleteIcon></DeleteIcon></button>
 
                         </div>
 

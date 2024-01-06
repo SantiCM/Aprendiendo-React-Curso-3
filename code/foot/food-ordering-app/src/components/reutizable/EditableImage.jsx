@@ -53,7 +53,7 @@ export default function EditableImage( { link, setLink } ) {
 
       <div className="rounded-md max-w-16 bg-red-600 p-2">
 
-        <input type="file" className="hidden" onChange={handleFile}/>
+        <input type="file" onChange={handleFile}/>
 
         <span className="pl-2 text-xl text-white cursor-pointer">Edit</span>
 
@@ -69,11 +69,11 @@ export default function EditableImage( { link, setLink } ) {
       
         link && (
 
-          <>
+          <div>
 
-            <Image width={100} height={100} className="w-full h-full" src={link}></Image>
+            <Image src={link} alt="Photo Menu" width={150} height={100} className="mt-3 rounded-lg"></Image>
 
-          </>
+          </div>
 
         )
     

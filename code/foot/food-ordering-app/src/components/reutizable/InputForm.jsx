@@ -23,7 +23,7 @@ export default function InputForm( { onSubmit, menuItem } ) {
 
     return (
     
-        <form className="mt-8 max-w-xl  mx-auto" onSubmit={ev => onSubmit(ev, {images, name, description, basePrice, sizes, extraIngredients})}>
+        <form className="mt-8 max-w-xl mx-auto" onSubmit={ev => onSubmit(ev, {images, name, description, basePrice, sizes, extraIngredients})}>
             
             <div className="flex gap-2 items-end">
                 
@@ -45,71 +45,64 @@ export default function InputForm( { onSubmit, menuItem } ) {
                     
                     ></input>
 
-                <label className={cssLabel}>Base Price</label>
+                    <label className={cssLabel}>Base Price</label>
 
-                <input
+                    <input
                     
-                    type="text" value={basePrice} onChange={(ev) => setBasePrice(ev.target.value)}
+                        type="text" value={basePrice} onChange={(ev) => setBasePrice(ev.target.value)}
                 
-                ></input>
+                    ></input>
 
-                <label className={cssLabel}>Image</label>
+                    <label className={cssLabel}>Image</label>
 
-                {/* Le damos el coomponente, el link osea lo que recibe la respuesta es el primer estado de la data
+                    {/* Le damos el coomponente, el link osea lo que recibe la respuesta es el primer estado de la data
                     y el segundo estado, que es el que recibe la respuesta, es el segundo estado de aca que da el valor
-                */}
-                <EditableImage link={images} setLink={setImages}></EditableImage>
+                    */}
+                    
+                    <EditableImage link={images} setLink={setImages}></EditableImage>
 
-                <PropsMenu 
+                    <PropsMenu 
                 
-                    name="Sizes" label="Add Sizes (Like Medium Or Large)" 
+                        name="Sizes" label="Add Sizes (Like Medium Or Large)" 
                     
-                    props={sizes} setProps={setSizes}
+                        props={sizes} setProps={setSizes}
                     
-                ></PropsMenu>
+                    ></PropsMenu>
 
-                <PropsMenu 
+                    <PropsMenu 
         
-                    props={extraIngredients} setProps={setExtraIngredients}
+                        props={extraIngredients} setProps={setExtraIngredients}
                     
-                    label="Extra Ingredients" name="Ingredients"
+                        label="Extra Ingredients" name="Ingredients"
                 
-                ></PropsMenu>
+                    ></PropsMenu>
 
-                <button
+                    <button
                     
-                    className="bg-primary text-white border-none mb-8"
-                    
-                    type="submit"
-                >
+                        className="bg-primary text-white border-none mb-8" type="submit"
+                    > Save
                 
-                    Save
-                
-                </button>
+                    </button>
 
+                    <div className="flex justify-center bg-tercer max-w-sm mx-auto p-3 rounded-lg gap-3 mb-4">
+                    
+                        <Link
+                             href={"/menu-items"} className="font-semibold text-xl text-black"
+                    
+                        > <p>Show All Menu Items</p>
+                    
+                        </Link>
+
+                        <Right></Right>
+                
+                    </div>
             
-                <div className="flex justify-center bg-tercer max-w-sm mx-auto p-3 rounded-lg gap-3 mb-4">
-                    
-                    <Link
-                    
-                        href={"/menu-items"} className="font-semibold text-xl text-black"
-                    
-                    >
-                    
-                        <p>Show All Menu Items</p>
-                    
-                    </Link>
-
-                    <Right></Right>
-                
                 </div>
-            
-            </div>
         
-        </div>
+            </div>
     
-    </form>
+        </form>
   
-  );
+    );
 
 }

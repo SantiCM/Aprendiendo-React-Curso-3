@@ -7,7 +7,7 @@ import {redirect, useParams} from "next/navigation"
 
 export default function EditMenuItemPage() {
 
-    const {id} = useParams()
+    const { id } = useParams()
 
     const [menuItem, setMenuItem] = useState(null)
 
@@ -50,6 +50,18 @@ export default function EditMenuItemPage() {
     
     }
 
+    async function handleDelete() {
+        
+        const response = await fetch("/api/menu-items?_id="+id, {
+            
+            method: "DELETE",
+        
+        })
+
+        setRedirectSubmit(true)
+    
+    }
+
     if(redirectSubmit) {
         
         return redirect("/menu-items")
@@ -79,6 +91,12 @@ export default function EditMenuItemPage() {
             <div className="bg-white pt-2 rounded-2xl">
 
                 <InputForm menuItem={menuItem} onSubmit={handleFormSubmit}></InputForm>
+
+                <div className="text-xl bg-red-500 max-w-sm mx-auto rounded-2xl">
+
+                    <button onClick={handleDelete} className="text-white">Delete this menu</button>
+
+                </div>
 
             </div>
 

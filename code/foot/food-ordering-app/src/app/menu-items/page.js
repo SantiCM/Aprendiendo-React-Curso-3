@@ -5,24 +5,31 @@ import TabsProfile from "../../components/layout/TabsProfile";
 import Right from "../../components/icons/Right";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-//import Image from "next/image";
+
 
 export default function Menu() {
 
+    // items del menu como estado y recibe un array vacio
     const [menuItems, setMenuItems] = useState([])
 
+    // recojemos la data y el loanding del profile
     const { data: profileData , loanding: profileLoanding } = UserProfile()
 
+    // variables del css
     const cssText = "text-primary"
 
     const cssTextItem = "text-black"
 
+    // efecto
     useEffect(() => {
-     
-        fetch("/api/menu-items").then(response => {
         
-            response.json().then(menuItems => {
+        // de la peticion de los items que da la respuesta
+        fetch("/api/menu-items").then(response => {
             
+            // esa respuesta, la volvemos json, le damos el then, damos el argumento de los items
+            response.json().then(menuItems => {
+                
+                // el segundo estado sera ese argumento de arriba
                 setMenuItems(menuItems)
             
             })
@@ -31,13 +38,15 @@ export default function Menu() {
 
     }, [])
     
-
+    // si el profile pasa
     if(profileLoanding) {
-        
+
+        // retornamos esto
         return "Loanding User Info..."
     
     }
 
+    // si la data del admin no es, damos ese texto
     if(profileData.admin) {
         
         return "Not And Admin"
@@ -66,15 +75,17 @@ export default function Menu() {
 
                 <h2 className="text-xl font-semibold pt-3 pl-3">Edit Menu Item:</h2>
 
-                {menuItems.length > 0 && menuItems.map((item) => (
+                {/*De el primer estado de los items del menu si es mayor a 0, (pasa) damos que ese estado sea mapeado */}
+                
+                {menuItems.length > 0 && menuItems.map((item, index) => (
 
-                    <div className="max-w-1xl"> 
+                    <div key={index}> 
 
-                        <div className="bg-white rounded-xl flex p-2 gap-3 cursor-pointer uppercase m-3">
+                        <div className="bg-white flex justify-center rounded-xl p-4 gap-4 cursor-pointer uppercase m-3">
 
-                            <Image src={item.images} width={120} height={100}></Image>
+                            <Image src={item.images} alt="Photo" width={100} height={50}></Image>
 
-                            <div className="flex flex-col text-xl pt-4 gap-4 font-semibold">
+                            <div className="text-xl pt-4 gap-4 font-semibold">
 
                                 <Link href={"/menu-items/edit/"+item._id} 
                             

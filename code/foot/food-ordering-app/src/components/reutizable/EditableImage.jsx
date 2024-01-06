@@ -11,6 +11,8 @@ export default function EditableImage( { link, setLink } ) {
 
     const data = new FormData()
 
+    //const api = mongoose.connect(process.env.CLOUDINARY_IMAGE)
+
     data.append("file", files[0])
 
     data.append("upload_preset", "images")
@@ -26,8 +28,6 @@ export default function EditableImage( { link, setLink } ) {
     const file = await response.json()
 
     setLink(file.secure_url)
-
-    console.log(file.asset_id)
 
     setLoanding(false)
 
@@ -51,11 +51,11 @@ export default function EditableImage( { link, setLink } ) {
 
     <>
 
-      <div className="bg-gray-200 rounded-md p-2">
+      <div className="rounded-md max-w-16 bg-red-600 p-2">
 
         <input type="file" className="hidden" onChange={handleFile}/>
 
-        <span className="block text-2xl text-black cursor-pointer">Edit</span>
+        <span className="pl-2 text-xl text-white cursor-pointer">Edit</span>
 
       </div>
 
@@ -71,7 +71,7 @@ export default function EditableImage( { link, setLink } ) {
 
           <>
 
-            <Image width={250} height={250} className="w-full h-full" src={link}></Image>
+            <Image width={100} height={100} className="w-full h-full" src={link}></Image>
 
           </>
 
@@ -81,7 +81,7 @@ export default function EditableImage( { link, setLink } ) {
 
       {!link && (
                           
-        <div className="bg-bgform p-2 mt-3 flex justify-center mb-4 rounded-md">
+        <div className="mt-2 flex justify-center">
                   
           <p className="text-xl">No Image Select</p>
                   

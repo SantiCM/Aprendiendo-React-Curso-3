@@ -1,7 +1,9 @@
 "use client"
 import { useEffect, useState } from "react";
 import TabsProfile from "../../components/layout/TabsProfile";
-import UserProfile from "../../components/UserProfile";
+import UserProfile from "../../components/reutizable/UserProfile";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function CategoriesPage(){
 
@@ -10,6 +12,8 @@ export default function CategoriesPage(){
     const [categories, setCategories] = useState([])
 
     const [edited, setEdited] = useState(null)
+
+    const [existing, setExisting] = useState(null)
 
     const { data: profileData , loanding: profileLoanding } = UserProfile()
 
@@ -21,7 +25,7 @@ export default function CategoriesPage(){
 
     function fetchCategories() {
         
-        fetch("api/categories").then(response => {
+        fetch("/api/categories").then(response => {
         
             response.json().then(categories => {
             
@@ -61,6 +65,18 @@ export default function CategoriesPage(){
 
         setEdited(null)
 
+    }
+
+    async function handleDelete(_id) {
+
+        const response = await fetch("/api/categories?_id="+_id, {
+            
+            method: "DELETE",
+        })
+
+        fetchCategories()
+
+    
     }
 
     if(profileLoanding) {
@@ -131,28 +147,40 @@ export default function CategoriesPage(){
 
             <div>
 
-                <h2 className="mb-2 text-lg pl-4 bg-bgform p-2 text-black text-center">Edit Category</h2>
-
+                <h2 className="mb-2 text-lg pl-2 text-black">Existing Categories</h2> 
+                    
                 {categories?.length > 0 && categories.map((text) => (
                     
-                    <div className="bg-white rounded-lg p-1 flex mx-auto cursor-pointer uppercase m-2">
-        
-                        <button onClick={() => {
-                            
-                            setEdited(text)
+                    <div className="bg-white rounded-lg flex p-2 cursor-pointer uppercase m-2">
 
-                            setCategoryName(text.name)
+                        <div className="flex gap-3 pl-3 pt-4">
+
+                            <p className="font-bold text-primary text-xl">{text.name}</p>
+
+                        </div>
+
+                        <div className="flex flex-1 pt-2 justify-between">
+
+                            <button onClick={() => {
                             
-                        }} className="border-none text-lg text-primary"
-                        
-                        >
+                                setEdited(text)
+
+                                setCategoryName(text.name)
                             
-                            {text.name}
+                            }} className="border-none text-lg text-primary"
                         
-                        </button>
- 
+                            >
+                            
+                                <EditIcon></EditIcon>
+                        
+                            </button>
+
+                            <button onClick={() => handleDelete(text._id)}><DeleteIcon></DeleteIcon></button>
+
+                        </div>
+
                     </div>
-                    
+
                 ))}
 
             </div>

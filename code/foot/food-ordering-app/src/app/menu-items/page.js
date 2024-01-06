@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import UserProfile from "../../components/UserProfile";
+import UserProfile from "../../components/reutizable/UserProfile";
 import TabsProfile from "../../components/layout/TabsProfile";
 import Right from "../../components/icons/Right";
 import { useEffect, useState } from "react";

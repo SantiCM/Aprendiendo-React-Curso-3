@@ -79,21 +79,16 @@ export default function Menu() {
                 
                 {menuItems.length > 0 && menuItems.map((item, index) => (
 
-                    <div key={index}> 
+                    // un link donde la ref es ir al menu-items del edit del id de el item del menu mencionado
+                    <Link href={"/menu-items/edit/"+item._id}>
 
                         <div className="bg-white flex justify-center rounded-xl p-4 gap-4 cursor-pointer uppercase m-3">
 
                             <Image src={item.images} alt="Photo" width={100} height={50}></Image>
 
                             <div className="text-xl pt-4 gap-4 font-semibold">
-
-                                <Link href={"/menu-items/edit/"+item._id} 
                             
-                                    className="text-primary"
-                         
-                                >  <p>NAME: <span className={cssTextItem}>{item.name}</span></p>
-
-                                </Link>    
+                                <p className={cssText}> NAME: <span className={cssTextItem}>{item.name}</span></p>   
 
                                 <p className={cssText}>Description: <span className={cssTextItem}>{item.description}</span></p>
 
@@ -103,7 +98,7 @@ export default function Menu() {
 
                         </div>
                     
-                    </div>
+                    </Link>
 
                 ))}
 

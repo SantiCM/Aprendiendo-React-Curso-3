@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react";
 import TabsProfile from "../../components/layout/TabsProfile";
 import UserProfile from "../../components/reutizable/UserProfile";
-import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 export default function CategoriesPage(){
 
@@ -197,7 +198,7 @@ export default function CategoriesPage(){
 
             <div>
 
-                <h2 className="mb-2 text-lg pl-2 text-black">Existing Categories</h2> 
+                <h2 className="mb-2 text-xl pl-2 text-black">Existing Categories</h2> 
                             
                 {/* Si las categorias son mayor a 0, damos el mapeo de las categories */}
                 {categories?.length > 0 && categories.map((text, index) => (
@@ -207,7 +208,7 @@ export default function CategoriesPage(){
                         <div className="grow">
 
                             {/* recojemos el name */}
-                            <p className="font-bold text-primary text-xl">{text.name}</p>
+                            <p className="font-bold text-primary text-xl pl-2">{text.name}</p>
 
                         </div>
 
@@ -221,15 +222,14 @@ export default function CategoriesPage(){
                                 // la categoria damos el name
                                 setCategoryName(text.name)
                     
-                            }} className="border-none text-lg text-primary"
-                
-                            >  <EditIcon></EditIcon>
+                            }} className="border-none text-xl text-black gap-3"
+
+                            > <EditIcon></EditIcon>
                 
                             </button>
-
-                            {/* Damos el boton, damos una funcion anonima, de la fuuncion de la peticion de eliminar, y damos el _id*/}
+                            
                             <button className="text-red-500" onClick={() => handleDelete(text._id)}><DeleteIcon></DeleteIcon></button>
-
+                            
                         </div>
 
                     </div>

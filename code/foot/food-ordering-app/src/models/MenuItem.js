@@ -1,4 +1,4 @@
-import {Schema, model, models} from "mongoose"
+import mongoose, {Schema, model, models} from "mongoose"
 
 // shcmea del extra price, name y price
 const extraPrice = new Schema({
@@ -27,6 +27,9 @@ const MenuItemSchemma = new Schema({
     // las descripcion
     // tipo string
     description: {type: String},
+
+    // la categoria se toma del tipo de mongo, de tipo, objeto del id
+    category: {type: mongoose.Types.ObjectId }, 
 
     // sizes, de tipo arreglo del price
     sizes: { type:[extraPrice] },

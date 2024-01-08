@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import UserProfile from "../../../../components/reutizable/UserProfile"
 import TabsProfile from "../../../../components/layout/TabsProfile"
 import InputForm from "../../../../components/reutizable/InputForm"
+import DeleteButton from "../../../../components/reutizable/DeleteButton"
 import {redirect, useParams} from "next/navigation"
 
 export default function EditMenuItemPage() {
@@ -117,13 +118,15 @@ export default function EditMenuItemPage() {
             
             <TabsProfile admin={true}></TabsProfile>
 
-            <div className="bg-white pt-2 rounded-2xl">
+            <div className="bg-white pt-1 rounded-2xl">
 
                 <InputForm menuItem={menuItem} onSubmit={handleFormSubmit}></InputForm>
 
-                <div className="text-xl bg-red-500 max-w-sm mx-auto rounded-2xl">
+                <div className="text-xl bg-red-500 max-w-sm  mx-auto rounded-2xl">
 
-                    <button type="button" onClick={handleDelete} className="text-white">Delete this menu</button>
+                    <DeleteButton label="Delete this menu" onDelete={handleDelete}>
+
+                    </DeleteButton>
 
                 </div>
 

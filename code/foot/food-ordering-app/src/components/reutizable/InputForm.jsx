@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Right from "../icons/Right"
 import EditableImage from "./EditableImage"
 import PropsMenu from "./PropsMenu"
@@ -13,17 +13,36 @@ export default function InputForm( { onSubmit, menuItem } ) {
 
     const [description, setDescription] = useState(menuItem?.description || "")
 
+    const [category, setCategory] = useState(menuItem?.category || "")
+
     const [basePrice, setBasePrice] = useState(menuItem?.basePrice || "")
 
     const [sizes, setSizes] = useState(menuItem?.sizes || [])
 
     const [extraIngredients, setExtraIngredients] = useState(menuItem?.extraIngredients || [])
 
+    const [categories, setCategories] = useState([])
+
     const cssLabel = "text-gray-900 text-md uppercase"
+
+    useEffect(() => {
+        
+        fetch ("/api/categories").then(response => {
+        
+            response.json().then(categories => {
+                
+                setCategories(categories)
+            
+            })
+        
+        })
+    
+    }, [])
+    
 
     return (
     
-        <form className="mt-8 max-w-xl mx-auto" onSubmit={ev => onSubmit(ev, {images, name, description, basePrice, sizes, extraIngredients})}>
+        <form className="mt-8 max-w-xl max-h-max mx-auto" onSubmit={ev => onSubmit(ev, {images, name, description, category, basePrice, sizes, extraIngredients})}>
             
             <div className="flex gap-2 items-end">
                 
@@ -44,6 +63,18 @@ export default function InputForm( { onSubmit, menuItem } ) {
                         type="text"  value={description} onChange={(ev) => setDescription(ev.target.value)}
                     
                     ></input>
+
+                    <label className={cssLabel}>Category</label>
+
+                    <select value={category} onChange={ev => setCategory(ev.target.value)}>
+
+                        {categories?.length > 0 && categories.map((text, index) => (
+        
+                            <option value={text._id}>{text.name}</option>
+        
+                        ))}
+
+                    </select>
 
                     <label className={cssLabel}>Base Price</label>
 

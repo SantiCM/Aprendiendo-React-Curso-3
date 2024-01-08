@@ -12,6 +12,7 @@ input[type="password"] {
 }
 
 input[type="text"],
+select,
 input[type="tel"],
 input[type="text"]:disabled {
   @apply flex justify-center w-full my-3 rounded-md;

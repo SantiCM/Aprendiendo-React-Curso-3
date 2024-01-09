@@ -1,24 +1,32 @@
-export default function Menu() {
+import { useContext } from "react"
+import { CartContext } from "../reutizable/AppContext"
+
+export default function Menu( menuItem ) {
+
+    const {images, name, description, basePrice} = menuItem
+
+    const {addToCard} = useContext(CartContext)
 
     return (
         
         <div 
             
-            className="bg-tercer p-4 group rounded-md text-center hover:shadow-md hover:bg-hoverMenu transition-all"
+            className="bg-tercer mt-3 p-4 group rounded-md text-center hover:shadow-md hover:bg-hoverMenu transition-all"
             
         >
             
             <div className="text-center">
 
-                <img src="/veggie-burger.jpg" className="max-h-auto h-36 block mx-auto" alt={"food in menu"} />
+                <img src={images} className="max-h-auto h-36 block mx-auto" alt={"food in menu"} />
 
             </div>
 
-            <h4 className="font-semibold my-4 text-xl">Food</h4>
+            <h4 className="font-semibold my-4 text-xl">{name}</h4>
 
-            <p className="text-gray-600 text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt blanditiis beatae incidunt asperiores aspernatur tempore repellat a ad porro minima.</p>
 
-            <button className=" mt-4 bg-primary text-white px-5 py-3 rounded-md border-none">Add to cart $</button>
+            <p className="text-gray-600 text-sm">{description}</p>
+
+            <button onClick={() => addToCard(menuItem)} className=" mt-4 bg-primary text-white px-5 py-3 rounded-md border-none">$ {basePrice}</button>
 
         </div>
         

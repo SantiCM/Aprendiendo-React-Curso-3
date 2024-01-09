@@ -112,7 +112,7 @@ export default function CategoriesPage(){
     
     }
 
-    if(profileData.admin) {
+    if(!profileData.admin) {
         
         return "Not And Admin"
     

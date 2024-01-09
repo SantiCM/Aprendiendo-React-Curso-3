@@ -1,10 +1,31 @@
 //import Image from "next/image";
 //import ensaldLeft from "../../../public/sallad2.png"
 //import ensaldRight from "../../../public/sallad1.png"
+"use client"
+import { useEffect, useState } from "react";
 import Menu from "./MenuItem";
 import SectionHeaders from "./SectionHeaders";
 
 export default function HomeMenu(){
+
+    const [menu, setMenu] = useState([])
+
+    useEffect(() => {
+
+        fetch("/api/menu-items").then(response => {
+            
+            response.json().then(items => {
+                
+                const itemsMenu = items.slice(-3)
+
+                setMenu(itemsMenu)
+            
+            })
+        
+        })
+      
+    }, [])
+    
 
     return (
         
@@ -24,17 +45,11 @@ export default function HomeMenu(){
 
             <div className="grid grid-cols-3 gap-6 max-w-max"> {/* sm:grid-cols-1 md:grid-cols-2*/}
 
-                <Menu></Menu>
-
-                <Menu></Menu>
-
-                <Menu></Menu>
-
-                <Menu></Menu>
-
-                <Menu></Menu>
-
-                <Menu></Menu>
+                {menu?.length > 0 && menu.map((item) => (
+                    
+                    <Menu {...item}></Menu>
+                    
+                ))}
                 
             </div>
 

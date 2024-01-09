@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-section.hero {
-}
-
 input[type="email"],
 input[type="password"] {
   @apply flex justify-center w-full my-3 rounded-md;

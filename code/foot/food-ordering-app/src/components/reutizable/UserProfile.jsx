@@ -19,7 +19,7 @@ export default function UserProfile() {
             response.json().then(data => {
 
                 // la data del segundo estado, damos la data del admin
-                setData(data.admin)
+                setData(data)
 
                 // y el cargar del segundo estado en falso
                 setLoanding(false)

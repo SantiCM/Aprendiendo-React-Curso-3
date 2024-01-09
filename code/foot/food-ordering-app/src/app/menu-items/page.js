@@ -47,7 +47,7 @@ export default function Menu() {
     }
 
     // si la data del admin no es, damos ese texto
-    if(profileData.admin) {
+    if(!profileData.admin) {
         
         return "Not And Admin"
     
@@ -55,11 +55,11 @@ export default function Menu() {
 
     return (
         
-        <section className="mt-8 max-w-md mx-auto">
+        <section className="mt-8 max-w-2xl mx-auto">
 
             <TabsProfile admin={true}></TabsProfile>
 
-            <div className="mt-8 flex justify-center bg-primary  p-3 rounded-lg gap-3">
+            <div className="mt-8 flex justify-center bg-primary p-3 rounded-lg gap-3">
 
                 <Link className="font-semibold text-xl text-white" href={"/menu-items/new"}
                 
@@ -73,34 +73,35 @@ export default function Menu() {
 
             <div>
 
-                <h2 className="text-xl font-semibold pt-3 pl-3">Edit Menu Item:</h2>
-
                 {/*De el primer estado de los items del menu si es mayor a 0, (pasa) damos que ese estado sea mapeado */}
-                
-                {menuItems.length > 0 && menuItems.map((item, index) => (
 
-                    // un link donde la ref es ir al menu-items del edit del id de el item del menu mencionado
-                    <Link href={"/menu-items/edit/"+item._id}>
+                <h2 className="pt-3 font-bold text-2xl">Edit Menu Item</h2>
 
-                        <div className="bg-white flex justify-center rounded-xl p-4 gap-4 cursor-pointer uppercase m-3">
+                <div className="grid grid-cols-3 gap-6 rounded-md pt-4">
 
-                            <Image src={item.images} alt="Photo" width={100} height={50}></Image>
+                    {menuItems.length > 0 && menuItems.map((item, index) => (
 
-                            <div className="text-xl pt-4 gap-4 font-semibold">
+                        // un link donde la ref es ir al menu-items del edit del id de el item del menu mencionado
+                        <Link className="bg-gray-600 p-4" href={"/menu-items/edit/"+item._id}>
+
+                            <div key={index} className="flex justify-center">
+
+                                <Image className="rounded-md" src={item.images} alt="Photo" width={200} height={200}></Image>
+
                             
-                                <p className={cssText}> NAME: <span className={cssTextItem}>{item.name}</span></p>   
+                            </div>
 
-                                <p className={cssText}>Description: <span className={cssTextItem}>{item.description}</span></p>
+                            <div key={index} className="text-center pt-3">
 
-                                <p className={cssText}>Base Price: <span className={cssTextItem}>${item.basePrice}</span></p>
+                                <p className="font-bold text-2xl text-white">{item.name}</p>
 
                             </div>
 
-                        </div>
-                    
-                    </Link>
+                        </Link>
 
-                ))}
+                    ))}
+
+                </div>
 
             </div>
 

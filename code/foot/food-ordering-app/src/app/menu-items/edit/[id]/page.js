@@ -106,7 +106,7 @@ export default function EditMenuItemPage() {
     }
 
     // si la data del admin es falso, damos el retorno
-    if(profileData.admin) {
+    if(!profileData.admin) {
         
         return "Not And Admin"
     

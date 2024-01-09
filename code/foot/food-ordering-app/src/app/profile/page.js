@@ -1,27 +1,17 @@
 "use client"
 import { useSession } from "next-auth/react"
-import Image from "next/image"
 import TabsProfile from "../../components/layout/TabsProfile"
+import UserInputForm from "../../components/reutizable/UserInputForm"
 import { redirect } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function ProfilePage(){
 
-    const [userName, setUserName] = useState("")
-
-    const [phone, setPhone] = useState("")
-
-    const [streetAddress, setStreetAddress] = useState("")
-
-    const [postalCode, setPostalCode] = useState("")
-
-    const [city, setCity] = useState("")
-
-    const [country, setCountry] = useState("")
-
     const [profileFetch, setProfileFetch] = useState(false)
 
     const [admin, setAdmin] = useState(false)
+
+    const [user, setUser] = useState(null)
 
     const session = useSession()
 
@@ -35,22 +25,12 @@ export default function ProfilePage(){
       
         if(status === "authenticated") {
             
-            setUserName(session.data.user.name)
-
             fetch("/api/profile").then(response => {
                 
                 response.json().then(data => {
                     
-                    setPhone(data.phone)
-                    
-                    setStreetAddress(data.streetAddress)
-                    
-                    setPostalCode(data.postalCode)
-                    
-                    setCity(data.city)
-                    
-                    setCountry (data.country) 
-                    
+                    setUser(data)
+
                     setAdmin(data.admin)
                     
                     setProfileFetch(true)
@@ -64,7 +44,7 @@ export default function ProfilePage(){
     }, [status, session])
     
 
-    async function handleProfileInfo(ev) {
+    async function handleProfileInfo(ev, data) {
 
         setSaved(false)
 
@@ -78,7 +58,7 @@ export default function ProfilePage(){
     
             headers: { "Content-Type": "application/json" },
     
-            body:JSON.stringify({ name: userName, streetAddress, phone, postalCode, city,  country})
+            body: JSON.stringify(data)
                 
         })
 
@@ -104,8 +84,6 @@ export default function ProfilePage(){
        return redirect("/login")
     
     }
-
-    const userImage = session.data?.user?.image
 
     return (
         
@@ -135,108 +113,8 @@ export default function ProfilePage(){
 
                 <div className="grid">
 
-                    <div className="flex justify-center">
-
-                        <div className="rounded-lg p-2">
-
-                            <Image className="rounded-md" src={userImage} alt="Image User Google" width={100} height={100}></Image>
-
-                        </div>
-
-                    </div>
-                
-                    <form className="grow" onSubmit={handleProfileInfo}>
-
-                        <input
-    
-                            type="text"
-
-                            placeholder="Please enter your full name"
-
-                            value={userName}
-
-                            onChange={(ev) => setUserName(ev.target.value)}
-
-                        ></input>
-
-                        <input
-
-                            type="email"
-
-                            disabled={true}
-
-                            value={session.data.user.email}
-
-                        ></input>
-
-                        <input
-
-                            type="tel"
-
-                            placeholder="Phone Number"
-
-                            value={phone}
-
-                            onChange={(ev) => setPhone(ev.target.value)}
-
-                        ></input>
-
-                        <input
-    
-                            type="text"
-
-                            placeholder="Street address"
-
-                            value={streetAddress}
-
-                            onChange={(ev) => setStreetAddress(ev.target.value)}
-
-                        ></input>
-
-                        <div className="flex gap-2">
-    
-                            <input
-                            
-                                type="text"
-                            
-                                placeholder="City"
-                            
-                                value={city}
-                            
-                                onChange={(ev) => setCity(ev.target.value)}
-                            
-                            ></input>
-
-                            <input
-        
-                                type="text"
-        
-                                placeholder="Postal Code"
-        
-                                value={postalCode}
-        
-                                onChange={(ev) => setPostalCode(ev.target.value)}
-
-                            ></input>
-
-                        </div>
-
-                        <input
-    
-                            type="text"
-    
-                            placeholder="Country"
-    
-                            value={country}
-    
-                            onChange={(ev) => setCountry(ev.target.value)}
-    
-                        ></input>
-
-                        <button className="bg-primary text-white mb-4" type="submit">Save</button>
-
-                    </form>
-
+                    <UserInputForm user={user} onSave={handleProfileInfo}></UserInputForm>
+                    
                 </div>
 
             </div> 

@@ -70,7 +70,7 @@ export default function InputForm( { onSubmit, menuItem } ) {
 
                         {categories?.length > 0 && categories.map((text, index) => (
         
-                            <option value={text._id}>{text.name}</option>
+                            <option key={index} value={text._id}>{text.name}</option>
         
                         ))}
 

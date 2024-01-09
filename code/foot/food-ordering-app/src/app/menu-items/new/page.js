@@ -43,7 +43,7 @@ export default function NewMenuItemPage() {
     
     }
 
-    if(profileData.admin) {
+    if(!profileData.admin) {
         
         return "Not And Admin"
     

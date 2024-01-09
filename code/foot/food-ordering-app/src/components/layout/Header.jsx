@@ -1,9 +1,14 @@
 "use client"
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useContext } from "react";
+import { CartContext } from "../reutizable/AppContext";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 // damos el header 
 export default function Header () {
+
+    const {cartProducts} = useContext(CartContext)
 
     // recojemos la sesion del auth 
     const session = useSession()
@@ -38,11 +43,7 @@ export default function Header () {
 
                 <Link href={"/"}>Home</Link>
 
-                <Link href="">Menu</Link>
-
-                <Link href="">About</Link>
-
-                <Link href="">Contact</Link>
+                <Link href={"/menu"}>Menu</Link>
 
             </nav>
 
@@ -76,6 +77,12 @@ export default function Header () {
                         <Link href={"/login"} className="font-bold text-xl">Login</Link>    
                     
                     </>
+                    
+                )}
+
+                {cartProducts?.length > 0 && (
+                    
+                    <Link href={"/cart"}><ShoppingCartIcon></ShoppingCartIcon>({cartProducts.length})</Link>    
                     
                 )}
 
